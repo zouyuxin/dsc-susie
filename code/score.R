@@ -16,7 +16,7 @@ compute_scores = function(cs, beta_idx, pip){
   hit = 0
   top_hit = 0
   if (signal_num!=0){
-    for (i in 1:cs.length){
+    for (i in 1:signal_num){
       if (any(cs[[i]]%in%beta_idx)) hit=hit+1
       set.idx = cs[[i]]
       highest.idx = which.max(pip[set.idx])
