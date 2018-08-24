@@ -2,7 +2,7 @@ library(susieR)
 susie_analyze = function(pathX, train_n, sim_y, L, prior, s_init) {
   X=as.matrix(readRDS(pathX)[1:train_n,])
   y=sim_y[1:train_n]
-  if (is.null(s_init)){
+  if (s_init==0){
     fit = susie(X,y,L=L,scaled_prior_variance=prior)
   } else {
     fit = susie(X,y,s_init=s_init)

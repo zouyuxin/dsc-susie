@@ -7,7 +7,7 @@ init_susie = function(s_bool,init_method,pathX,sim_y,train_n){
   X=as.matrix(readRDS(pathX)[1:train_n,])
   y=sim_y[1:train_n]
   if (!s_bool) {
-    s_init = NULL
+    s_init = 0
   } else {
     if (init_method=='L0Learn'){
       set.seed(1)
@@ -23,10 +23,10 @@ init_susie = function(s_bool,init_method,pathX,sim_y,train_n){
       effect.index = which(betas!=0)[-1]-1
       effect.beta = betas[which(betas!=0)[-1]]
     } else {
-      s_init = NULL
+      s_init = 0
     }
     if (length(effect.index) == 0) {
-      s_init = NULL
+      s_init = 0
     } else {
       s_init = susie_set_init(effect.index, effect.beta, num_variables=dim(X)[2], V=0.2, residual_variance=NULL)
     }

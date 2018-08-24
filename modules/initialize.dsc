@@ -5,7 +5,7 @@ init_susie: initialize.R + \
   sim_y: $sim_y
   train_n: $train_n
   s_bool: 0
-  init_method: NULL
+  init_method: 0
   $s_init: s_init
   
 init_susieL0(init_susie):

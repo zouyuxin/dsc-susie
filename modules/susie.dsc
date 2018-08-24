@@ -6,7 +6,7 @@ susie: susie.R + \
   train_n: $train_n
   L: 20
   prior: 0.2
-  s_init: NULL
+  s_init: 0
   $fit: susie_res$fit
   $sets: susie_res$sets
   $cs: susie_res$cs
