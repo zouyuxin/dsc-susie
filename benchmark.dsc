@@ -2,26 +2,21 @@
 
 %include modules/presimulate
 %include modules/simulate
-%include modules/susie_analyze
-%include modules/prediction
+%include modules/initialize
+%include modules/susie
 %include modules/score
-%include modules/duplicate
 
 DSC:
   define:
     presimulate: compute_beta_sigma 
-    susie_smallEffect_gaussian_analyze: susie_gaussian, susieL0_gaussian
-    susie_largeEffect_gaussian_analyze: susie_gaussian_largeEffect, susieL0_gaussian_largeEffect
-    susie_smallEffect_binary_analyze: susie_binary, susieL0_binary
-    susie_largeEffect_binary_analyze: susie_binary_largeEffect, susieL0_binary_largeEffect
-    score: compute_hit
-    duplicate: check_duplicate_cs
-    
   run: 
-    susie_smallEffect_gaussian: presimulate * sim_gaussian_y * susie_smallEffect_gaussian_analyze * (compute_pred_err_gaussian_smallEffect, score, duplicate)
-    susie_largeEffect_gaussian: presimulate * sim_gaussian_largeEffect_y * susie_largeEffect_gaussian_analyze * (compute_pred_err_guassian_largeEffect, score, duplicate)
-    susie_smallEffect_binary: presimulate * sim_binary_y * susie_smallEffect_binary_analyze * (compute_pred_err_binary_smallEffect, score, duplicate)
-    susie_largeEffect_binary: presimulate * sim_binary_largeEffect_y * susie_largeEffect_binary_analyze * (compute_pred_err_binary_largeEffect, score, duplicate)
+    gaussian: presimulate * sim_gaussian * init_susie * susie * score
+    gaussian_large: presimulate * sim_gaussian_large * init_susie * susie_large * score
+    gaussian_init: presimulate * sim_gaussian * (init_susieL0, init_susieglm) * susie_init * score
+    gaussian_prior: presimulate * sim_gaussian * init_susie * susie_prior * score
+    binary: presimulate * sim_binary * init_susie * susie * score
+    binary_large: presimulate * sim_binary_large * init_susie * susie_large * score
+    binary_init: presimulate * sim_binary * (init_susieL0, init_susieglm) * susie_init * score
 
   exec_path: modules, code
   R_libs: MASS, glmnet, susieR@stephenslab/susieR, L0Learn@hazimehh/L0Learn

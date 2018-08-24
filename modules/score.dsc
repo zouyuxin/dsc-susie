@@ -1,9 +1,11 @@
 # score modules
-compute_hit: compute_hit.R + R(hit_res=compute_hit(cs, beta_idx))
+score: score.R + R(score_res=compute_scores(cs, beta_idx, pip))
   cs: $cs
   beta_idx: $beta_idx
-  $hit: hit_res$hit
-  $cs_length: hit_res$cs_length
-  
-  
+  pip: $pip
+  $hit: score_res$hit
+  $signal_num: score_res$signal_num
+  $cs_medianSize: score_res$cs_medianSize
+  $top_hit: score_res$top_hit
+  $dup_bool: score_res$dup_bool
   
