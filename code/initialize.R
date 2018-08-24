@@ -28,7 +28,7 @@ init_susie = function(s_bool,init_method,pathX,sim_y,train_n){
     if (length(effect.index) == 0) {
       s_init = 0
     } else {
-      s_init = susie_set_init(effect.index, effect.beta, num_variables=dim(X)[2], V=0.2, residual_variance=NULL)
+      s_init = susie_set_init(effect.index, effect.beta, num_variables=dim(X)[2], V=0.2, residual_variance=as.numeric(var(y)))
     }
   }
   return(s_init)
