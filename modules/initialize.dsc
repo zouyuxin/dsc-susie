@@ -12,10 +12,7 @@ init_susieL0(init_susie):
   s_bool: 1
   init_method: "L0Learn"
   
-init_susieglm(init_susie):
-  s_bool: 1
-  init_method: "glmnet"
-  
+
   
 
   
