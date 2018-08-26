@@ -23,11 +23,3 @@ DSC:
   global:
     pathX: "data/wbbr_test_X.rds"
     pathy: "data/wbbr_test_y.rds"
-    
-    
-    
-    
-    
-    
-    
-    
