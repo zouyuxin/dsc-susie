@@ -10,8 +10,13 @@
 #' @return top_hit a scalar counts how many confidence sets contain a true signal and the true signal has the highest pip
 #' @return dup_bool a boolean 1 if duplicated, 0 otherwise
 compute_scores = function(cs, beta_idx, pip){
-  signal_num = length(cs)
-  cs_medianSize = median(sapply(cs,length))
+  if (is.null(cs)){
+    cs_medianSize = 0
+    signal_num = 0
+  } else {
+    cs_medianSize = as.numeric(median(sapply(cs,length)))
+    signal_num = length(cs)
+  }
   dup_bool = check_duplicate(cs)
   hit = 0
   top_hit = 0
