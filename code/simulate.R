@@ -8,6 +8,7 @@
 #' @return sim_y an n vector simulated gaussian y
 #' @return beta_idx a effect_num-length vector that includes indices of effects
 #' @return beta_val a effect_num-length vector that includes beta values 
+#' @return mean_corX mean of correlations of X (lower triangular entries of correlation matrix of X)
 sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
   X = as.matrix(X)
   n = dim(X)[1]
@@ -23,6 +24,9 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
   beta.idx = sample(p, effect_num)
   beta = rep(0,p)
   beta[beta.idx] = beta.values
+  effectX = X[,beta.idx]
+  corX = cor(effectX)
+  mean_corX = mean(corX[lower.tri(corX)])
   
   if(effect_num==0){
     sim.y = rnorm(n, 0, sd(y)) 
@@ -32,7 +36,7 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
     epsilon = rnorm(n, mean = 0, sd = sigma)
     sim.y = yhat + epsilon
   }
-  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values))
+  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX))
 }
 
 
@@ -45,6 +49,7 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
 #' @return sim_y an n vector simulated binary y
 #' @return beta_idx a effect_num-length vector that includes indices of effects
 #' @return beta_val a effect_num-length vector that includes beta values 
+#' @return mean_corX mean of correlations of X (lower triangular entries of correlation matrix of X)
 sim_binary = function(X, effect_num, beta.sigma){
   X = as.matrix(X)
   n = dim(X)[1]
@@ -54,13 +59,16 @@ sim_binary = function(X, effect_num, beta.sigma){
   beta.idx = sample(p, effect_num)
   beta = rep(0,p)
   beta[beta.idx] = beta.values
+  effectX = X[,beta.idx]
+  corX = cor(effectX)
+  mean_corX = mean(corX[lower.tri(corX)])
   #yhat = X %*% beta + intercept
   yhat = X %*% beta
   logit.prob = 1/(1+exp(-yhat))   
   sim.y = rbinom(n, 1, logit.prob)
   sim.y[1] = 0 #hard-coded here to avoid elbo error in susie
   sim.y[2] = 1
-  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values))
+  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX))
 }
 
 

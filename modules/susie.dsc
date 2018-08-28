@@ -15,6 +15,7 @@ susie: susie.R + \
   $num_iter: susie_res$num_iter
   $beta_est_idx: susie_res$beta_est_idx
   $beta_est_val: susie_res$beta_est_val
+  $avg_purity: susie_res$avg_purity
   
 susie_large(susie):
   L: 201
@@ -23,56 +24,8 @@ susie_init(susie):
   s_init: $s_init
   
 susie_prior(susie):
-  prior: 0.01, 0.1, 0.3, 0.4, 0.5, 0.7, 0.9, 0.99
+  prior: 0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.4, 0.5, 0.7, 0.9, 0.99
 
 
 
 
-susie_gaussian: susie.R
-  pathX: $pathX
-  train_n: $train_n
-  sim_y: $sim_gaussian_y
-  L: 20
-  pve: 0.1, 0.3, 0.5, 0.7, 0.9, 0.99
-  estimate_prior_variance: 0, 0.2, 1
-  s_init: NULL
-  $fit: fit
-  $cs: cs
-  $beta_est_idx: beta_est_idx
-  $beta_est_val: beta_est_val
-  $num_iter: num_iter
-  
-susieL0_gaussian: susie.R
-  pathX: $pathX
-  train_n: $train_n
-  sim_y: $sim_gaussian_y
-  pve: 0.1, 0.3, 0.5, 0.7, 0.9, 0.99
-  estimate_prior_variance: 0, 0.2, 1
-  s_init: 1
-  $fit: fit
-  $cs: cs
-  $beta_est_idx: beta_est_idx
-  $beta_est_val: beta_est_val
-  $s: s
-  $num_iter: num_iter
-  
-susie_gaussian_largeEffect(susie_gaussian):
-  sim_y: $sim_gaussian_largeEffect_y
-  L: 210
-  
-susieL0_gaussian_largeEffect(susieL0_gaussian):
-  sim_y: $sim_gaussian_largeEffect_y
-  
-  
-susie_binary(susie_gaussian):
-  sim_y: $sim_binary_y
-  
-susieL0_binary(susieL0_gaussian):
-  sim_y: $sim_binary_y
-  
-susie_binary_largeEffect(susie_gaussian):
-  sim_y: $sim_binary_largeEffect_y
-  L: 210
-  
-susieL0_binary_largeEffect(susieL0_binary):
-  sim_y: $sim_binary_largeEffect_y
