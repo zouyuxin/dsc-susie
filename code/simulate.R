@@ -24,10 +24,13 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
   beta.idx = sample(p, effect_num)
   beta = rep(0,p)
   beta[beta.idx] = beta.values
-  effectX = X[,beta.idx]
-  corX = cor(effectX)
-  mean_corX = mean(corX[lower.tri(corX)])
-  
+  if (effect_num==1){
+    mean_corX = 1
+  } else {
+    effectX = X[,beta.idx]
+    corX = cor(effectX)
+    mean_corX = mean(corX[lower.tri(corX)])
+  }
   if(effect_num==0){
     sim.y = rnorm(n, 0, sd(y)) 
   }else{
@@ -59,9 +62,13 @@ sim_binary = function(X, effect_num, beta.sigma){
   beta.idx = sample(p, effect_num)
   beta = rep(0,p)
   beta[beta.idx] = beta.values
-  effectX = X[,beta.idx]
-  corX = cor(effectX)
-  mean_corX = mean(corX[lower.tri(corX)])
+  if (effect_num==1){
+    mean_corX = 1
+  } else {
+    effectX = X[,beta.idx]
+    corX = cor(effectX)
+    mean_corX = mean(corX[lower.tri(corX)])
+  }
   #yhat = X %*% beta + intercept
   yhat = X %*% beta
   logit.prob = 1/(1+exp(-yhat))   
