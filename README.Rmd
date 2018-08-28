@@ -18,7 +18,7 @@ We evaluate SuSiE performance by the following four numerical values:
           \[ \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of true effects}}\]
   
   - false discovery rate (fdr):
-          \[ \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of confidence sets}}\]
+          \[ 1 - \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of confidence sets}}\]
   
   - median size of confidence sets
   - number of top hit: a top hit means that when a confidence set contains a true effect, if the true effect has the highest posterior inclusion probability(PIP), we count it as a top hit. 
