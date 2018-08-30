@@ -29,7 +29,7 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
   } else {
     effectX = X[,beta.idx]
     corX = cor(effectX)
-    mean_corX = mean(corX[lower.tri(corX)])
+    mean_corX = mean(abs(corX[lower.tri(corX)]))
   }
   if(effect_num==0){
     sim.y = rnorm(n, 0, sd(y)) 
@@ -67,7 +67,7 @@ sim_binary = function(X, effect_num, beta.sigma){
   } else {
     effectX = X[,beta.idx]
     corX = cor(effectX)
-    mean_corX = mean(corX[lower.tri(corX)])
+    mean_corX = mean(abs(corX[lower.tri(corX)]))
   }
   #yhat = X %*% beta + intercept
   yhat = X %*% beta

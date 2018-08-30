@@ -21,24 +21,32 @@ We evaluate SuSiE performance by the following four numerical values:
           \[ 1 - \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of confidence sets}}\]
   
   - median size of confidence sets
-  - number of top hit: a top hit means that when a confidence set contains a true effect, if the true effect has the highest posterior inclusion probability(PIP), we count it as a top hit. 
+  - top hit rate: a top hit means that when a confidence set contains a true effect, if the true effect has the highest posterior inclusion probability(PIP), we count it as a top hit. 
+    top hit rate = # of top hit / # of confidence sets
 
 ## Questions to investigate
 
 ### Gaussian SuSiE
 
-Suppose we simulate a gaussian `y` given a GTEx design matrix `X`. 
+Suppose we simulate 10 datasets with gaussian `y` given a design matrix `X` from GTEx data. 
 
+#### How is power?
+When first with SuSiE, we want to know how is power of this method?
+
+  - Suppose we have one nonzero effect. How is SuSiE's power under various PVEs (proportion variance explained)? (See powerVSpve.ipynb)
+  
+#### How to set a prior?
+After learning SuSiE's power for given real data, we want to give suggestions on setting priors in SuSiE by asking the following questions: 
+
+  - What is SuSiE performance when a simulated pve is very small while a prior is very large? (See pveVSprior1.ipynb)
+  - How to pick prior when pve is moderate? (See pveVSprior2.ipynb)
+  - What is SuSiE performance when a simulated pve is very large while a prior is very small? (See pveVSprior3.ipynb)
+  
 #### Number of effects
   - What is the SuSiE performance when the number of nonzero effects is 1, 5, 10, or 20?
   - What is the SuSiE performance when the number of nonzero effects is as large as 200? Will the confidence sets produced by SuSiE be still sparse?
   
-#### pve and prior
-  - What is the SuSiE performance when a simulated pve is very small while a prior is very large?
-  - What is the SuSiE performance when a simulated pve is very small while a prior is very small as well?
-  - What is the SuSiE performance when a simulated pve is very large while a prior is very large as well?
-  - What is the SuSiE performance when a simulated pve is very large while a prior is very small?
-  
+
 #### L0 initialization
   - What is the SuSiE performance when SuSiE is initialized with L0Learn? Will the number of iteration be smaller? 
   - Will the duplication problem (i.e SuSiE produces exactly same confidence sets) be solved by using L0 initialization?
