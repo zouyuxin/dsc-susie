@@ -50,38 +50,10 @@ default:
 presimulate:
   time_per_instance: 2m
   
-sim_gaussian_y:
-  time_per_instance: 3m
-  
-susie_smallEffect_gaussian_analyze:
-  time_per_instance: 3m
-  
-compute_pred_err_gaussian_smallEffect:
-  time_per_instance: 2m
-  
 score:
   time_per_instance: 2m
   
-sim_gaussian_largeEffect_y:
-  time_per_instance: 3m
-  
-compute_pred_err_guassian_largeEffect:
-  time_per_instance: 3m
-  
-sim_binary_y:
-  time_per_instance: 2m
-  
-susie_smallEffect_binary_analyze:
-  time_per_instance: 7m
-  
-compute_pred_err_binary_smallEffect:
-  time_per_instance: 3m
-  
-sim_binary_largeEffect_y:
-  time_per_instance: 2m
-  
-compute_pred_err_binary_largeEffect:
-  time_per_instance: 3m
+
   
   
 
