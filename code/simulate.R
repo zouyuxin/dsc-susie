@@ -10,6 +10,9 @@
 #' @return beta_val a effect_num-length vector that includes beta values 
 #' @return mean_corX mean of correlations of X (lower triangular entries of correlation matrix of X)
 sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
+  if (is.na(beta.sigma)){
+    beta.sigma = 0.5
+  }
   X = as.matrix(X)
   n = dim(X)[1]
   p = dim(X)[2]
@@ -54,6 +57,9 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
 #' @return beta_val a effect_num-length vector that includes beta values 
 #' @return mean_corX mean of correlations of X (lower triangular entries of correlation matrix of X)
 sim_binary = function(X, effect_num, beta.sigma){
+  if (is.na(beta.sigma)){
+    beta.sigma = 0.5
+  }
   X = as.matrix(X)
   n = dim(X)[1]
   p = dim(X)[2]
