@@ -18,5 +18,5 @@ DSC:
   exec_path: modules, code
   R_libs: MASS, glmnet, susieR@stephenslab/susieR, L0Learn@hazimehh/L0Learn
   global:
-    pathX: "data/X_gsea.rds"
+    pathX: "data/X_gsea1.rds"
     pathy: "data/y_gsea.rds"
