@@ -4,7 +4,7 @@ library(susieR)
 library(glmnet)
 
 init_susie = function(s_bool,init_method,pathX,sim_y,train_n){
-  X=as.matrix(readRDS(pathX)[1:train_n,])
+  X=as.matrix(readRDS(pathX))[1:train_n,]
   y=sim_y[1:train_n]
   if (!s_bool) {
     s_init = 0
