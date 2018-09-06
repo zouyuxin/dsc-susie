@@ -4,7 +4,7 @@
 
 This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix `X` from real data, e.g. GTEx, single cell, or GSEA data.
 
-Our goal is to investigate how SuSiE performs (see "evaluation criteria" below) in the context of different X structures.
+Our goal is to investigate how SuSiE performs (see "Performance evaluation criteria" below) in the context of different X structures.
 
 ## Data 
 
@@ -27,8 +27,7 @@ Random data are a 1200 by 1000 matrix, each entry of which is randomly generated
 
 ### GTEx genotype data
 
-Design matrix `X` is a 574 by 1001 matrix. [FIXME, what is n and p] 
-
+Design matrix `X` is a 574 by 1001 matrix. 
 ## Simulation
 
 We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under various number of causal variables and total percentage of variance explained (PVE).
@@ -53,8 +52,6 @@ We evaluate SuSiE performance by the following four numerical values:
   - **top hit rate**: define "top hit" as a true effect that receives a SuSiE posterior inclusion probability (PIP) being the highest PIP among all variables in the same reported CS. Top hit rate is then given by the number of top hit divided by the number of CS that contains at least one true effect.
 
 ## Investigations
-
-[FIXME: add links]
 
 ### GTEx gene expression data
 
