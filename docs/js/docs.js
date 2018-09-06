@@ -1,3 +1,3 @@
-var analysisArray = ['00results']
-var analysisDict = {'knitr::opts-chunk-set(echo-TRUE)-1': '00results'}
-var analysisArrayMap = {'00results': 'knitr::opts_chunk$set(echo = TRUE)'}
+var analysisArray = ['gtex1', 'gtex2', 'gtex3', 'gtex4', 'gtex5', 'singlecell1', 'singlecell2', 'singlecell3', 'singlecell4', 'singlecell5']
+var analysisDict = {'How-is-power-under-different-PVEs?-1': 'singlecell1', 'How-to-set-a-prior-given-T-1-nonzero-effect?-1': 'singlecell2', 'How-is-power-for-different-number-of-effects?-1': 'singlecell3', 'How-to-set-a-prior-given-T-2-nonzero-effects?-1': 'singlecell4', 'How-does-SuSiE-perform-given-T-200-nonzero-effects?-1': 'singlecell5'}
+var analysisArrayMap = {'gtex1': 'How is power under different PVEs?', 'gtex2': 'How to set a prior give ... zero effect?', 'gtex3': 'How is power for differ ... of effects?', 'gtex4': 'How to set a prior give ... ero effects?', 'gtex5': 'How does SuSiE perform  ... ero effects?', 'singlecell1': 'How is power under different PVEs?', 'singlecell2': 'How to set a prior give ... zero effect?', 'singlecell3': 'How is power for differ ... of effects?', 'singlecell4': 'How to set a prior give ... ero effects?', 'singlecell5': 'How does SuSiE perform  ... ero effects?'}
