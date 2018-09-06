@@ -47,15 +47,15 @@ We evaluate SuSiE performance by the following four numerical values:
 
 ## Questions to investigate
 
-### How is power under different PVEs?
+  - How is power under different PVEs?
 
-### How to set a prior given only one nonzero effect?
+  - How to set a prior given only one nonzero effect?
 
-### How is SuSiE power given different number of nonzero effects?
+  - How is SuSiE power given different number of nonzero effects?
 
-### How to set a prior given two nonzero effects?
+  - How to set a prior given two nonzero effects?
 
-### How does SuSiE perform given 200 nonzero effects?
+  - How does SuSiE perform given 200 nonzero effects?
 
 ## Input `X`
 
