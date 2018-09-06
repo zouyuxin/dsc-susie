@@ -8,4 +8,3 @@ score: score.R + R(score_res=compute_scores(cs, beta_idx, pip))
   $cs_medianSize: score_res$cs_medianSize
   $top_hit: score_res$top_hit
   $dup_bool: score_res$dup_bool
-  
