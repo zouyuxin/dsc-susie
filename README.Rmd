@@ -60,16 +60,32 @@ We evaluate SuSiE performance by the following four numerical values:
 
   - Power of SuSiE
     - [one non-zero effects](analysis/gtex1.html)
-    - multiple non-zero effects
+    - [multiple non-zero effects](analysis/gtex3.html)
 
   - Choice of prior
-    - one non-zero effect 
-    - two non-zero effects
+    - [one non-zero effect](analysis/gtex2.html) 
+    - [two non-zero effects](analysis/gtex4.html)
 
   - Large number of causal variables
-    - performance of 200 non-zero effects
+    - [performance of 200 non-zero effects](analysis/gtex5.html)
 
   - Different initialization methods
+  
+### Single cell data
+
+  - Power of SuSiE
+    - [one non-zero effects](analysis/singlecell1.html)
+    - [multiple non-zero effects](analysis/singlecell3.html)
+
+  - Choice of prior
+    - [one non-zero effect](analysis/singlecell2.html) 
+    - [two non-zero effects](analysis/singlecell4.html)
+
+  - Large number of causal variables
+    - [performance of 200 non-zero effects](analysis/singlecell5.html)
+
+  - Different initialization methods
+
 
 ## DSC instructions
 
