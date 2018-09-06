@@ -2,63 +2,61 @@
 
 ## Goal
 
-This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix `X` from real data, e.g. GTEx, single-cell, or GSEA data.
+This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix `X` from real data, e.g. GTEx, single cell, or GSEA data.
 
 Our intention is to investigate if SuSiE has a good interpretation (i.e. high power, low false discovery rate) in the context of different X structures.
 
-## Example
+## Data 
 
-The example uses GTEx data from two tissues: whole blood and brain cells (source:link...). In other words, design matrix `X` is real genotype data from 755 whole blood and 439 brain cell samples on 1000 genes. Then we simulate a gaussian `y` and a binary `y` under various circumstances for different questions of interest. For instance, we set different numbers of nonzero effects in the simulation to investigate whether SuSiE has a better performance when the number of effects is sparse. 
+### GTEx data
+
+  - GTEx data are from two tissues: whole blood and brain cells. i.e. design matrix `X` is real genotype data from 755 whole blood and 439 brain cell samples on 1000 genes. 
+
+### Single cell data
+
+  - Single cell data consist of two types of hard-to-distinguished cells. i.e. design matrix `X` has 600 regulatory T cells and 600 memory T cells on 1000 genes.
+
+### GSEA data
+
+  - GSEA data have genes as rows and pathways as columns. i.e. design matrix `X` has 1200 genes on 1000 pathways.
+
+### Random data
+
+  - Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from rnorm(0,1).
+
+We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under various circumstances for different questions of interest. For instance, we set different priors to investigate whether SuSiE has a better performance when the number of nonzero effects is sparse. 
 
 ## Performance evaluation criteria
 
 We evaluate SuSiE performance by the following four numerical values:
 
   - power: 
-          \[ \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of true effects}}\]
+          # of confidence sets that contain at least one true effect / # of true effects
   
-  - false discovery rate (fdr):
-          \[ 1 - \frac{\text{# of confidence sets that contain at least one true effect}}{\text{# of confidence sets}}\]
+  - fdr: false discovery rate
+         1 - # of confidence sets that contain at least one true effect / # of confidence sets
   
-  - median size of confidence sets
+  - cs_size: median size of confidence sets
+  
+  - cs_num: number of confidence sets
+  
   - top hit rate: a top hit means that when a confidence set contains a true effect, if the true effect has the highest posterior inclusion probability(PIP), we count it as a top hit. 
-    top hit rate = # of top hit / # of confidence sets
+    top hit rate = # of top hit / # of confidence sets.
+    
+  - avg_purity: 
 
 ## Questions to investigate
 
-### Gaussian SuSiE
+### How is power under different PVEs?
 
-Suppose we simulate 10 datasets with gaussian `y` given a design matrix `X` from GTEx data. 
+### How to set a prior given only one nonzero effect?
 
-#### How is power?
-When first with SuSiE, we want to know how is power of this method?
+### How is SuSiE power given different number of nonzero effects?
 
-  - Suppose we have one nonzero effect. How is SuSiE's power under various PVEs (proportion variance explained)? (See powerVSpve.ipynb)
-  
-#### How to set a prior?
-After learning SuSiE's power for given real data, we want to give suggestions on setting priors in SuSiE by asking the following questions: 
+### How to set a prior given two nonzero effects?
 
-  - What is SuSiE performance when a simulated pve is very small while a prior is very large? (See pveVSprior1.ipynb)
-  - How to pick prior when pve is moderate? (See pveVSprior2.ipynb)
-  - What is SuSiE performance when a simulated pve is very large while a prior is very small? (See pveVSprior3.ipynb)
-  
-#### Number of effects
-  - What is the SuSiE performance when the number of nonzero effects is 1, 5, 10, or 20?
-  - What is the SuSiE performance when the number of nonzero effects is as large as 200? Will the confidence sets produced by SuSiE be still sparse?
-  
+### How does SuSiE perform given 200 nonzero effects?
 
-#### L0 initialization
-  - What is the SuSiE performance when SuSiE is initialized with L0Learn? Will the number of iteration be smaller? 
-  - Will the duplication problem (i.e SuSiE produces exactly same confidence sets) be solved by using L0 initialization?
-
-### Binary SuSiE
-Suppose we simulate a binary `y` given a GTEx design matrix `X`. 
-
-#### Number of effects
-  - What is the SuSiE performance when the number of nonzero effects is 1, 5, 10, or 20?
-  - What is the SuSiE performance when the number of nonzero effects is as large as 200? Will the confidence sets produced by SuSiE be still sparse?
-  - Is there a performance difference if we simulate a gaussian `y` versus a binary `y` when the number of effects is default 10?
-  
 ## Input `X`
 
 To input a customized design matrix `X`, please go to `benchmark.dsc`. At the bottom, change the `pathX` to the path of your matrix `X` as you want. 
