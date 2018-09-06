@@ -203,13 +203,13 @@ $(document).ready(function () {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="SuSiE-demonstrated-in-DSC">SuSiE demonstrated in DSC<a class="anchor-link" href="#SuSiE-demonstrated-in-DSC">&#182;</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h2><p>This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix <code>X</code> from real data, e.g. GTEx, single cell, or GSEA data.</p>
 <p>Our goal is to investigate how SuSiE performs (see "evaluation criteria" below) in the context of different X structures.</p>
-<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><h3 id="GTEx-gene-expression-data">GTEx gene expression data<a class="anchor-link" href="#GTEx-gene-expression-data">&#182;</a></h3><p>Gene expression from two tissues: whole blood and brain cells. Design matrix <code>X</code> is gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes.</p>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><h3 id="GTEx-gene-expression-data">GTEx gene expression data<a class="anchor-link" href="#GTEx-gene-expression-data">&#182;</a></h3><p>Gene expression from two tissues: whole blood and brain cells. Design matrix <code>X</code> is a gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes.</p>
 <h3 id="Single-cell-gene-expression-data">Single cell gene expression data<a class="anchor-link" href="#Single-cell-gene-expression-data">&#182;</a></h3><p>Gene expression of two types of hard-to-distinguished cells. Design matrix <code>X</code> has 600 regulatory T cells and 600 memory T cells on 1000 genes.</p>
 <h3 id="GSEA-gene-set-data">GSEA gene-set data<a class="anchor-link" href="#GSEA-gene-set-data">&#182;</a></h3><p>Gene-set / pathway annotation of genes. Design matrix <code>X</code> has 1200 genes on 1000 pathways. Each column is a gene-set / pathway of binary coding where <code>1</code> indicates the corresponding row (gene) is in the gene-set, <code>0</code> otherwise.</p>
 <h3 id="Random-data">Random data<a class="anchor-link" href="#Random-data">&#182;</a></h3><p>Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from <code>rnorm(0,1)</code>.</p>
-<h3 id="GTEx-genotype-data">GTEx genotype data<a class="anchor-link" href="#GTEx-genotype-data">&#182;</a></h3><p>[FIXME] use <code>X</code> from <a href="https://github.com/stephenslab/susieR/blob/master/inst/data/N3finemapping.rds">here</a></p>
+<h3 id="GTEx-genotype-data">GTEx genotype data<a class="anchor-link" href="#GTEx-genotype-data">&#182;</a></h3><p>Design matrix <code>X</code> is a 574 by 1001 matrix. [FIXME, what is n and p]</p>
 <h2 id="Simulation">Simulation<a class="anchor-link" href="#Simulation">&#182;</a></h2><p>We simulate 50 datasets. For each dataset, we simulate a gaussian <code>y</code> under various number of causal variables and total percentage of variance explained (PVE).</p>
-<h2 id="Analysis-methods">Analysis methods<a class="anchor-link" href="#Analysis-methods">&#182;</a></h2><p>We run SuSiE to investigate various questions of interest. For instance, performance on different data-set, factors that impact power, choice of priors, and so on. See "Investigations" section below.</p>
+<h2 id="Analysis-methods">Analysis methods<a class="anchor-link" href="#Analysis-methods">&#182;</a></h2><p>We run SuSiE to investigate various questions of interest. For instance, performance on different dataset, factors that impact power, choice of priors, and so on. See "Investigations" section below.</p>
 <h2 id="Performance-evaluation-criteria">Performance evaluation criteria<a class="anchor-link" href="#Performance-evaluation-criteria">&#182;</a></h2><p>We evaluate SuSiE performance by the following four numerical values:</p>
 <ul>
 <li><strong>Power</strong>: number of confidence sets (CS) that contain at least one true effect, divided by number of true effects</li>
@@ -229,19 +229,42 @@ $(document).ready(function () {
 <li><p>Power of SuSiE</p>
 <ul>
 <li><a href="analysis/gtex1.html">one non-zero effects</a></li>
-<li>multiple non-zero effects</li>
+<li><a href="analysis/gtex3.html">multiple non-zero effects</a></li>
 </ul>
 </li>
 <li><p>Choice of prior</p>
 <ul>
-<li>one non-zero effect</li>
-<li>two non-zero effects</li>
+<li><a href="analysis/gtex2.html">one non-zero effect</a></li>
+<li><a href="analysis/gtex4.html">two non-zero effects</a></li>
 </ul>
 </li>
 <li><p>Large number of causal variables</p>
 <ul>
-<li>performance of 200 nonzero effects</li>
+<li><a href="analysis/gtex5.html">performance of 200 non-zero effects</a></li>
 </ul>
+</li>
+<li><p>Different initialization methods</p>
+</li>
+</ul>
+<h3 id="Single-cell-data">Single cell data<a class="anchor-link" href="#Single-cell-data">&#182;</a></h3><ul>
+<li><p>Power of SuSiE</p>
+<ul>
+<li><a href="analysis/singlecell1.html">one non-zero effects</a></li>
+<li><a href="analysis/singlecell3.html">multiple non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Choice of prior</p>
+<ul>
+<li><a href="analysis/singlecell2.html">one non-zero effect</a></li>
+<li><a href="analysis/singlecell4.html">two non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Large number of causal variables</p>
+<ul>
+<li><a href="analysis/singlecell5.html">performance of 200 non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Different initialization methods</p>
 </li>
 </ul>
 <h2 id="DSC-instructions">DSC instructions<a class="anchor-link" href="#DSC-instructions">&#182;</a></h2><h3 id="General-instructions">General instructions<a class="anchor-link" href="#General-instructions">&#182;</a></h3><p>The main DSC file is <code>benchmarks.dsc</code>. To see what is available:</p>
@@ -250,15 +273,16 @@ $(document).ready(function () {
 <p>before running,</p>
 
 <pre><code>rm -Rf benchmark.scripts.html benchmark.html benchmark</code></pre>
-<p>and to run the benchmark:</p>
+<p>and to run the benchmark for 50 datasets:</p>
 
-<pre><code>dsc benchmark.dsc --replicate 10</code></pre>
+<pre><code>dsc benchmark.dsc --replicate 50</code></pre>
 <p>Or to run a minimal test benchmark, e.g.</p>
 
 <pre><code>dsc benchmark.dsc --truncate</code></pre>
-<p>[FIXME: add a note on cluster run]</p>
-<h3 id="Input-X">Input <code>X</code><a class="anchor-link" href="#Input-X">&#182;</a></h3><p>[FIXME: now i believe as discussed you do it differently (and better). Please change the description below.]</p>
-<p>To input a customized design matrix <code>X</code>, please go to <code>benchmark.dsc</code>. At the bottom, change the <code>pathX</code> to the path of your matrix <code>X</code> as you want.</p>
+<p>To run on the cluster:</p>
+
+<pre><code>dsc benchmark.dsc --host midway.yml --replicate 50 -c 40</code></pre>
+<h3 id="Input-X">Input <code>X</code><a class="anchor-link" href="#Input-X">&#182;</a></h3><p>To input a customized design matrix <code>X</code>, please go to <code>benchmark.dsc</code>. At the bottom, change the <code>pathX</code> to the path of your matrix <code>X</code> as you want.</p>
 
 </div>
 </div>
