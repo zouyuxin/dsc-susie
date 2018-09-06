@@ -10,7 +10,7 @@ Our goal is to investigate how SuSiE performs (see "evaluation criteria" below) 
 
 ### GTEx gene expression data
 
-Gene expression from two tissues: whole blood and brain cells. Design matrix `X` is gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes. 
+Gene expression from two tissues: whole blood and brain cells. Design matrix `X` is a gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes. 
 
 ### Single cell gene expression data
 
@@ -27,7 +27,7 @@ Random data are a 1200 by 1000 matrix, each entry of which is randomly generated
 
 ### GTEx genotype data
 
-[FIXME] use `X` from [here](https://github.com/stephenslab/susieR/blob/master/inst/data/N3finemapping.rds)
+Design matrix `X` is a 574 by 1001 matrix. [FIXME, what is n and p] 
 
 ## Simulation
 
@@ -35,7 +35,7 @@ We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under vari
 
 ## Analysis methods
 
-We run SuSiE to investigate various questions of interest. For instance, performance on different data-set, factors that impact power, choice of priors, and so on. See "Investigations" section below.
+We run SuSiE to investigate various questions of interest. For instance, performance on different dataset, factors that impact power, choice of priors, and so on. See "Investigations" section below.
 
 ## Performance evaluation criteria
 
@@ -67,7 +67,7 @@ We evaluate SuSiE performance by the following four numerical values:
     - two non-zero effects
 
   - Large number of causal variables
-    - performance of 200 nonzero effects
+    - performance of 200 non-zero effects
 
 ## DSC instructions
 
@@ -85,10 +85,10 @@ rm -Rf benchmark.scripts.html benchmark.html benchmark
 
 ```
 
-and to run the benchmark:
+and to run the benchmark for 50 datasets:
 
 ```
-dsc benchmark.dsc --replicate 10
+dsc benchmark.dsc --replicate 50
 ```
 
 Or to run a minimal test benchmark, e.g.
@@ -96,10 +96,12 @@ Or to run a minimal test benchmark, e.g.
 dsc benchmark.dsc --truncate
 ```
 
-[FIXME: add a note on cluster run]
+To run on the cluster:
+
+```
+dsc benchmark.dsc --host midway.yml --replicate 50 -c 40 
+```
 
 ### Input `X`
-
-[FIXME: now i believe as discussed you do it differently (and better). Please change the description below.]
 
 To input a customized design matrix `X`, please go to `benchmark.dsc`. At the bottom, change the `pathX` to the path of your matrix `X` as you want. 
