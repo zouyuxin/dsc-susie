@@ -1,67 +1,77 @@
-# dsc-susie
+# SuSiE demonstrated in DSC
 
 ## Goal
 
 This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix `X` from real data, e.g. GTEx, single cell, or GSEA data.
 
-Our intention is to investigate if SuSiE has a good interpretation (i.e. high power, low false discovery rate) in the context of different X structures.
+Our goal is to investigate how SuSiE performs (see "evaluation criteria" below) in the context of different X structures.
 
 ## Data 
 
-### GTEx data
+### GTEx gene expression data
 
-  - GTEx data are from two tissues: whole blood and brain cells. i.e. design matrix `X` is real genotype data from 755 whole blood and 439 brain cell samples on 1000 genes. 
+Gene expression from two tissues: whole blood and brain cells. Design matrix `X` is gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes. 
 
-### Single cell data
+### Single cell gene expression data
 
-  - Single cell data consist of two types of hard-to-distinguished cells. i.e. design matrix `X` has 600 regulatory T cells and 600 memory T cells on 1000 genes.
+Gene expression of two types of hard-to-distinguished cells. Design matrix `X` has 600 regulatory T cells and 600 memory T cells on 1000 genes.
 
-### GSEA data
+### GSEA gene-set data
 
-  - GSEA data have genes as rows and pathways as columns. i.e. design matrix `X` has 1200 genes on 1000 pathways.
+Gene-set / pathway annotation of genes. Design matrix `X` has 1200 genes on 1000 pathways. Each column is a gene-set / pathway of binary coding where `1` indicates the corresponding row (gene) is in the gene-set, `0` otherwise.
 
 ### Random data
 
-  - Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from rnorm(0,1).
+Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from `rnorm(0,1)`.
 
-We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under various circumstances for different questions of interest. For instance, we set different priors to investigate whether SuSiE has a better performance when the number of nonzero effects is sparse. 
+
+### GTEx genotype data
+
+[FIXME] use `X` from [here](https://github.com/stephenslab/susieR/blob/master/inst/data/N3finemapping.rds)
+
+## Simulation
+
+We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under various number of causal variables and total percentage of variance explained (PVE).
+
+## Analysis methods
+
+We run SuSiE to investigate various questions of interest. For instance, performance on different data-set, factors that impact power, choice of priors, and so on. See "Investigations" section below.
 
 ## Performance evaluation criteria
 
 We evaluate SuSiE performance by the following four numerical values:
 
-  - power: 
-          # of confidence sets that contain at least one true effect / # of true effects
+  - **Power**: number of confidence sets (CS) that contain at least one true effect, divided by number of true effects
+  - **FDR**: an estimate for false discovery rate, 1 - (number of CS that contain at least one true effect devided by number of CS reported)  
+
+  - **CS number**: number of CS reported
+
+  - **CS size**: median size of CS reported
   
-  - fdr: false discovery rate
-         1 - # of confidence sets that contain at least one true effect / # of confidence sets
+  - **CS purity**: average "purity" of CS, an indication of correlation of variables within CS 
   
-  - cs_size: median size of confidence sets
-  
-  - cs_num: number of confidence sets
-  
-  - top hit rate: a top hit means that when a confidence set contains a true effect, if the true effect has the highest posterior inclusion probability(PIP), we count it as a top hit. 
-    top hit rate = # of top hit / # of confidence sets.
-    
-  - avg_purity: 
+  - **top hit rate**: define "top hit" as a true effect that receives a SuSiE posterior inclusion probability (PIP) being the highest PIP among all variables in the same reported CS. Top hit rate is then given by the number of top hit divided by the number of CS that contains at least one true effect.
 
-## Questions to investigate
+## Investigations
 
-  - How is power under different PVEs?
+[FIXME: add links]
 
-  - How to set a prior given only one nonzero effect?
+### GTEx gene expression data
 
-  - How is SuSiE power given different number of nonzero effects?
+  - Power of SuSiE
+    - [one non-zero effects](analysis/gtex1.html)
+    - multiple non-zero effects
 
-  - How to set a prior given two nonzero effects?
+  - Choice of prior
+    - one non-zero effect 
+    - two non-zero effects
 
-  - How does SuSiE perform given 200 nonzero effects?
+  - Large number of causal variables
+    - performance of 200 nonzero effects
 
-## Input `X`
+## DSC instructions
 
-To input a customized design matrix `X`, please go to `benchmark.dsc`. At the bottom, change the `pathX` to the path of your matrix `X` as you want. 
-
-## Run DSC
+### General instructions
 
 The main DSC file is `benchmarks.dsc`. To see what is available:
 
@@ -86,3 +96,10 @@ Or to run a minimal test benchmark, e.g.
 dsc benchmark.dsc --truncate
 ```
 
+[FIXME: add a note on cluster run]
+
+### Input `X`
+
+[FIXME: now i believe as discussed you do it differently (and better). Please change the description below.]
+
+To input a customized design matrix `X`, please go to `benchmark.dsc`. At the bottom, change the `pathX` to the path of your matrix `X` as you want. 
