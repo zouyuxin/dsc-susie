@@ -2,7 +2,7 @@ name: 'Yet another SuSiE benchmark'
 repo: 'http://github.com/KaiqianZhang/dsc-susie'
 footer: "&copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago"
 include_dir: ['analysis']
-exclude_file: ['analysis/00results.Rmd', 'analysis/V6.ipynb']
+exclude_file: ['analysis/00results.Rmd', 'analysis/V6.ipynb', 'analysis/pveVSprior1.ipynb', 'analysis/pveVSprior3.ipynb']
 hide_navbar: []
 homepage: "README.Rmd"
 # add_commit_info: True
