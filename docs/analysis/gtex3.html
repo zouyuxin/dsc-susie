@@ -237,7 +237,7 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-is-power-for-different-number-of-effects?">How is power for different number of effects?<a class="anchor-link" href="#How-is-power-for-different-number-of-effects?">&#182;</a></h1><p>Since simulated effects have certain correlation, we provide <code>mean_corX</code> to quantify such correlation. Assume prior is 0.2. For each fixed number of nonzero effects $T \in \{2,3,5,10,20\}$, we investigate SuSiE power as pve changes.</p>
+<h1 id="How-is-power-for-different-numbers-of-non-zero-effects?">How is power for different numbers of non-zero effects?<a class="anchor-link" href="#How-is-power-for-different-numbers-of-non-zero-effects?">&#182;</a></h1><p>Since simulated effects have certain correlation, we provide <code>mean_corX</code> to quantify such correlation. Assume prior is 0.2. For each fixed number of non-zero effects $T \in \{2,3,5,10,20\}$, we investigate SuSiE power as PVE changes.</p>
 
 </div>
 </div>
@@ -246,13 +246,13 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p>We observe that in the GTEx data:</p>
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong>- Summary: SuSiE power decreases and FDR increases given more non-zero effects, despite of correlations among columns of X.</strong></p>
 <ul>
-<li><p>As the number of effects increases, it becomes more difficult to achieve high power even if pve is large.</p>
+<li><p>As the number of effects increases, it becomes more difficult to achieve high power even if PVE is large.</p>
 </li>
-<li><p><code>mean_corX</code> does not seem to be a factor that causes a change in power. A decline in power is directly related to an increased number of nonzero effects.</p>
+<li><p><code>mean_corX</code> does not seem to be a factor that causes a change in power. A decline in power is directly related to an increased number of non-zero effects.</p>
 </li>
-<li><p>Furthermore, fdr also becomes larger when we have more number of nonzero effects.</p>
+<li><p>Furthermore, FDR also becomes larger when we have more number of non-zero effects.</p>
 </li>
 </ul>
 
@@ -612,7 +612,7 @@ dscout.summary<span class="p">[</span><span class="kp">is.nan</span><span class=
 </div>
 <hr>
 &copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
-<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/1b8582531303c1ffc60993c948750a739d782d79/analysis/gtex3.ipynb"><code>analysis/gtex3.ipynb</code></a> committed by KaiqianZhang on Wed Sep 5 21:43:53 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/1b8582531303c1ffc60993c948750a739d782d79">revision 1, 1b85825</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/542c59f98fd989db9c24af66217d0b7a1ebea68d/analysis/gtex3.ipynb"><code>analysis/gtex3.ipynb</code></a> committed by KaiqianZhang on Thu Sep 6 10:50:31 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/542c59f98fd989db9c24af66217d0b7a1ebea68d">revision 2, 542c59f</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
 </div>
 </div>
 </body>
