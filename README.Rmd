@@ -56,30 +56,30 @@ We evaluate SuSiE performance by the following four numerical values:
 ### GTEx gene expression data
 
   - Power of SuSiE
-    - [one non-zero effects](analysis/gtex1.html)
-    - [multiple non-zero effects](analysis/gtex3.html)
+    - [one non-zero effects](analysis/GTEX_gene_expression_analysis_1.html)
+    - [multiple non-zero effects](analysis/GTEX_gene_expression_analysis_2.html)
 
   - Choice of prior
-    - [one non-zero effect](analysis/gtex2.html) 
-    - [two non-zero effects](analysis/gtex4.html)
+    - [one non-zero effect](analysis/GTEX_gene_expression_analysis_3.html) 
+    - [two non-zero effects](analysis/GTEX_gene_expression_analysis_4.html)
 
   - Large number of causal variables
-    - [performance of 200 non-zero effects](analysis/gtex5.html)
+    - [performance of 200 non-zero effects](analysis/GTEX_gene_expression_analysis_5.html)
 
   - Different initialization methods
   
 ### Single cell data
 
   - Power of SuSiE
-    - [one non-zero effects](analysis/singlecell1.html)
-    - [multiple non-zero effects](analysis/singlecell3.html)
+    - [one non-zero effects](analysis/Singe_cell_analysis_1.html)
+    - [multiple non-zero effects](analysis/Singe_cell_analysis_2.html)
 
   - Choice of prior
-    - [one non-zero effect](analysis/singlecell2.html) 
-    - [two non-zero effects](analysis/singlecell4.html)
+    - [one non-zero effect](analysis/Singe_cell_analysis_3.html) 
+    - [two non-zero effects](analysis/Singe_cell_analysis_4.html)
 
   - Large number of causal variables
-    - [performance of 200 non-zero effects](analysis/singlecell5.html)
+    - [performance of 200 non-zero effects](analysis/Singe_cell_analysis_5.html)
 
   - Different initialization methods
 
