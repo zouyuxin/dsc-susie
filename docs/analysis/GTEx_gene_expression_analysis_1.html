@@ -237,7 +237,16 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-does-SuSiE-perform-given-T=200-non-zero-effects?">How does SuSiE perform given T=200 non-zero effects?<a class="anchor-link" href="#How-does-SuSiE-perform-given-T=200-non-zero-effects?">&#182;</a></h1><p>Assume using prior = 0.2. We investigate SuSiE performance given 200 non-zero effects.</p>
+<h1 id="How-is-power-under-different-PVEs?">How is power under different PVEs?<a class="anchor-link" href="#How-is-power-under-different-PVEs?">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assume only one non-zero effect $T = 1$. Assume that prior is 0.2.</p>
+<p>We investigate SuSiE's power when PVE $\in \{0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.4, 0.5, 0.7, 0.9, 0.99\}$.</p>
 
 </div>
 </div>
@@ -246,17 +255,17 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong>- Summary: SuSiE power is very low given 200 non-zero effects.</strong></p>
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong>- Summary: SuSiE's power is  $\geq 0.98$ from PVE $= 0.1$.  And FDR is almost $0$. </strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout.summary
+<div class=" highlight hl-r"><pre><span></span>dscout_summary
 </pre></div>
 
 </div>
@@ -275,19 +284,19 @@ body {
 
 <div class="output_html rendered_html output_subarea ">
 <table>
-<thead><tr><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_size</th><th scope=col>cs_num</th><th scope=col>top_hit_rate</th><th scope=col>avg_purity</th></tr></thead>
+<thead><tr><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>power</th><th scope=col>fdr</th></tr></thead>
 <tbody>
-	<tr><td>200      </td><td>0.01     </td><td>0.0178845</td><td>0.0001   </td><td>0.5000   </td><td>1.0      </td><td>1.000000 </td><td>0.5000   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.02     </td><td>0.0178845</td><td>0.0005   </td><td>0.1667   </td><td>1.0      </td><td>1.000000 </td><td>0.8333   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.03     </td><td>0.0178845</td><td>0.0009   </td><td>0.1000   </td><td>1.1      </td><td>1.000000 </td><td>0.9000   </td><td>0.9744434</td></tr>
-	<tr><td>200      </td><td>0.05     </td><td>0.0178845</td><td>0.0022   </td><td>0.0833   </td><td>1.0      </td><td>1.000000 </td><td>0.9167   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.10     </td><td>0.0178845</td><td>0.0045   </td><td>0.0217   </td><td>1.0      </td><td>1.243243 </td><td>0.9783   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.20     </td><td>0.0178845</td><td>0.0082   </td><td>0.0000   </td><td>1.0      </td><td>1.708333 </td><td>1.0000   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.40     </td><td>0.0178845</td><td>0.0147   </td><td>0.0000   </td><td>1.0      </td><td>2.940000 </td><td>1.0000   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.50     </td><td>0.0178845</td><td>0.0163   </td><td>0.0000   </td><td>1.0      </td><td>3.260000 </td><td>1.0000   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.70     </td><td>0.0178845</td><td>0.0235   </td><td>0.0000   </td><td>1.0      </td><td>4.700000 </td><td>1.0000   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.90     </td><td>0.0178845</td><td>0.0298   </td><td>0.0033   </td><td>1.0      </td><td>5.980000 </td><td>0.9967   </td><td>1.0000000</td></tr>
-	<tr><td>200      </td><td>0.99     </td><td>0.0178845</td><td>0.0364   </td><td>0.0027   </td><td>1.0      </td><td>7.300000 </td><td>0.9973   </td><td>1.0000000</td></tr>
+	<tr><td>1     </td><td>0.01  </td><td>0.00  </td><td>1.0000</td></tr>
+	<tr><td>1     </td><td>0.02  </td><td>0.16  </td><td>0.1111</td></tr>
+	<tr><td>1     </td><td>0.03  </td><td>0.30  </td><td>0.0625</td></tr>
+	<tr><td>1     </td><td>0.05  </td><td>0.66  </td><td>0.0294</td></tr>
+	<tr><td>1     </td><td>0.10  </td><td>0.98  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.20  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.40  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.50  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.70  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.90  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.99  </td><td>1.00  </td><td>0.0000</td></tr>
 </tbody>
 </table>
 
@@ -309,12 +318,12 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout_Q3 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;singlecell_Q3.rds&#39;</span><span class="p">)</span>
-dscout_Q3 <span class="o">=</span> dscout_Q3<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q3<span class="o">$</span>sim_gaussian_large.output.file<span class="p">),]</span>
-dscout_Q3 <span class="o">=</span> dscout_Q3<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q3<span class="o">$</span>susie_large.output.file<span class="p">),]</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_Q1 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;dscout_Q1.rds&#39;</span><span class="p">)</span>
+dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.output.file<span class="p">),]</span>
+dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>susie.output.file<span class="p">),]</span>
 </pre></div>
 
 </div>
@@ -324,13 +333,12 @@ dscout_Q3 <span class="o">=</span> dscout_Q3<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>dscout_Q3<span class="o">$</span>sim_gaussian_large.effect_num<span class="p">,</span> dscout_Q3<span class="o">$</span>sim_gaussian_large.pve<span class="p">,</span> 
-                       dscout_Q3<span class="o">$</span>score.hit<span class="p">,</span> dscout_Q3<span class="o">$</span>score.signal_num<span class="p">,</span> dscout_Q3<span class="o">$</span>score.cs_medianSize<span class="p">,</span>
-                       dscout_Q3<span class="o">$</span>score.top_hit<span class="p">,</span> dscout_Q3<span class="o">$</span>sim_gaussian_large.mean_corX<span class="p">,</span> dscout_Q3<span class="o">$</span>susie_large.avg_purity<span class="p">)</span>
-<span class="kp">names</span><span class="p">(</span>dscout_df<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;effect_num&#39;</span><span class="p">,</span> <span class="s">&#39;pve&#39;</span><span class="p">,</span><span class="s">&#39;hit&#39;</span><span class="p">,</span> <span class="s">&#39;cs_num&#39;</span><span class="p">,</span> <span class="s">&#39;cs_size&#39;</span><span class="p">,</span> <span class="s">&#39;top_hit&#39;</span><span class="p">,</span> <span class="s">&#39;corX&#39;</span><span class="p">,</span> <span class="s">&#39;avg_purity&#39;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.effect_num<span class="p">,</span> dscout_Q1<span class="o">$</span>sim_gaussian.pve<span class="p">,</span> 
+                       dscout_Q1<span class="o">$</span>score.hit<span class="p">,</span> dscout_Q1<span class="o">$</span>score.signal_num<span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>dscout_df<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;effect_num&#39;</span><span class="p">,</span> <span class="s">&#39;pve&#39;</span><span class="p">,</span> <span class="s">&#39;hit&#39;</span><span class="p">,</span> <span class="s">&#39;cs_num&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -340,23 +348,28 @@ dscout_Q3 <span class="o">=</span> dscout_Q3<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>hitsum.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
-hitmean.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
-power.summary <span class="o">=</span> hitmean.summary
-power.summary<span class="o">$</span>power <span class="o">=</span> hitmean.summary<span class="o">$</span>hit <span class="o">/</span> power.summary<span class="o">$</span>effect_num
+<div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> dscout_df<span class="p">[</span>dscout_df<span class="o">$</span>effect_num<span class="o">==</span><span class="m">1</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>dscout_summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
+dscout_summary<span class="o">$</span>power <span class="o">=</span> dscout_summary<span class="o">$</span>hit <span class="o">/</span> <span class="m">50</span>
 fdr.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
-fdr.summary<span class="o">$</span>fdr <span class="o">=</span> <span class="kp">round</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> hitsum.summary<span class="o">$</span>hit <span class="o">/</span> fdr.summary<span class="o">$</span>cs_num<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
-meannonzero <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span><span class="kp">mean</span><span class="p">(</span>x<span class="p">[</span>x<span class="o">!=</span><span class="m">0</span><span class="p">])}</span>
-setsize.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_size <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> meannonzero<span class="p">)</span>
-tophit.summary <span class="o">=</span> aggregate<span class="p">(</span>top_hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
-tophit.summary<span class="o">$</span>tophit_rate <span class="o">=</span> <span class="kp">round</span><span class="p">(</span>tophit.summary<span class="o">$</span>top_hit <span class="o">/</span> fdr.summary<span class="o">$</span>cs_num <span class="p">,</span> <span class="m">4</span><span class="p">)</span>
-corX.summary <span class="o">=</span> aggregate<span class="p">(</span>corX <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
-cs_num.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> meannonzero<span class="p">)</span>
-dscout_df<span class="o">$</span>avg_purity<span class="p">[</span><span class="kp">is.na</span><span class="p">(</span>dscout_df<span class="o">$</span>avg_purity<span class="p">)]</span><span class="o">=</span><span class="m">0</span>
-purity.summary <span class="o">=</span> aggregate<span class="p">(</span>avg_purity <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> meannonzero<span class="p">)</span>
+fdr.summary<span class="o">$</span>fdr <span class="o">=</span> <span class="kp">round</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> dscout_summary<span class="o">$</span>hit <span class="o">/</span> fdr.summary<span class="o">$</span>cs_num<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+dscout_summary<span class="o">$</span>hit <span class="o">=</span> <span class="kc">NULL</span>
+dscout_summary<span class="o">$</span>fdr <span class="o">=</span> fdr.summary<span class="o">$</span>fdr
 </pre></div>
 
 </div>
@@ -366,29 +379,12 @@ purity.summary <span class="o">=</span> aggregate<span class="p">(</span>avg_pur
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout.summary <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>power.summary<span class="o">$</span>effect_num<span class="p">,</span> power.summary<span class="o">$</span>pve<span class="p">,</span> corX.summary<span class="o">$</span>corX<span class="p">,</span>
-                            power.summary<span class="o">$</span>power<span class="p">,</span> fdr.summary<span class="o">$</span>fdr<span class="p">,</span> setsize.summary<span class="o">$</span>cs_size<span class="p">,</span> 
-                            cs_num.summary<span class="o">$</span>cs_num<span class="p">,</span> tophit.summary<span class="o">$</span>tophit_rate<span class="p">,</span> purity.summary<span class="o">$</span>avg_purity<span class="p">)</span>
-<span class="kp">names</span><span class="p">(</span>dscout.summary<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;effect_num&#39;</span><span class="p">,</span> <span class="s">&#39;pve&#39;</span><span class="p">,</span> <span class="s">&#39;mean_corX&#39;</span><span class="p">,</span><span class="s">&#39;power&#39;</span><span class="p">,</span> 
-                          <span class="s">&#39;fdr&#39;</span><span class="p">,</span> <span class="s">&#39;cs_size&#39;</span><span class="p">,</span> <span class="s">&#39;cs_num&#39;</span><span class="p">,</span><span class="s">&#39;top_hit_rate&#39;</span><span class="p">,</span> <span class="s">&#39;avg_purity&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>is.nan.data.frame <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span>
 <span class="kp">do.call</span><span class="p">(</span><span class="kp">cbind</span><span class="p">,</span> <span class="kp">lapply</span><span class="p">(</span>x<span class="p">,</span> <span class="kp">is.nan</span><span class="p">))</span>
-dscout.summary<span class="p">[</span><span class="kp">is.nan</span><span class="p">(</span>dscout.summary<span class="p">)]</span> <span class="o">=</span> <span class="m">0</span>
+dscout_summary<span class="p">[</span><span class="kp">is.nan</span><span class="p">(</span>dscout_summary<span class="p">)]</span> <span class="o">=</span> <span class="m">0</span>
 </pre></div>
 
 </div>
@@ -398,7 +394,7 @@ dscout.summary<span class="p">[</span><span class="kp">is.nan</span><span class=
 </div>
 <hr>
 &copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
-<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/542c59f98fd989db9c24af66217d0b7a1ebea68d/analysis/singlecell5.ipynb"><code>analysis/singlecell5.ipynb</code></a> committed by KaiqianZhang on Thu Sep 6 10:50:31 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/542c59f98fd989db9c24af66217d0b7a1ebea68d">revision 2, 542c59f</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/29940898567e545570afc46627f776b06bd68c65/analysis/GTEx_gene_expression_analysis_1.ipynb"><code>analysis/GTEx_gene_expression_analysis_1.ipynb</code></a> committed by KaiqianZhang on Thu Sep 6 13:29:26 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/29940898567e545570afc46627f776b06bd68c65">revision 1, 2994089</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
 </div>
 </div>
 </body>
