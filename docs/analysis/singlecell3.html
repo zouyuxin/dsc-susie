@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="ipynb_website:version" content="0.9.5" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css" href="../css/jt.css">
+
+<link rel="stylesheet" type="text/css" href="../css/toc2.css">
+
+<link href="../site_libs/jqueryui-1.11.4/jquery-ui.css">
+<link rel="stylesheet" href="../site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script src="../site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<link rel="stylesheet"
+      href="../site_libs/highlightjs/null.min.css"
+      type="text/css" />
+
+<script src="../site_libs/highlightjs/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+<script src="../js/doc_toc.js"></script>
+<script src="../js/docs.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": {
+            preferredFont: "TeX",
+            availableFonts: ["TeX"],
+            styles: {
+                scale: 110,
+                ".MathJax_Display": {
+                    "font-size": "110%",
+                }
+            }
+        }
+    });
+</script>
+<script>
+function filterDataFrame(id) {
+    var input = document.getElementById("search_" + id);
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("dataframe_" + id);
+    var tr = table.getElementsByTagName("tr");
+    // Loop through all table rows, and hide those who don't match the search query
+    for (var i = 1; i < tr.length; i++) {
+        for (var j = 0; j < tr[i].cells.length; ++j) {
+            var matched = false;
+            if (tr[i].cells[j].innerHTML.toUpperCase().indexOf(filter) != -1) {
+                tr[i].style.display = "";
+                matched = true
+                break;
+            }
+            if (!matched)
+                tr[i].style.display = "none";
+        }
+    }
+}
+function sortDataFrame(id, n, dtype) {
+    var table = document.getElementById("dataframe_" + id);
+    var tb = table.tBodies[0]; // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
+    var tr = Array.prototype.slice.call(tb.rows, 0); // put rows into array
+    if (dtype === 'numeric') {
+        var fn = function(a, b) { 
+            return parseFloat(a.cells[n].textContent) <= parseFloat(b.cells[n].textContent) ? -1 : 1;
+        }
+    } else {
+        var fn = function(a, b) {
+            var c = a.cells[n].textContent.trim().localeCompare(b.cells[n].textContent.trim()); 
+            return c > 0 ? 1 : (c < 0 ? -1 : 0) }
+    }
+    var isSorted = function(array, fn) {
+        if (array.length < 2)
+            return 1;
+        var direction = fn(array[0], array[1]); 
+        for (var i = 1; i < array.length - 1; ++i) {
+            var d = fn(array[i], array[i+1]);
+            if (d == 0)
+                continue;
+            else if (direction == 0)
+                direction = d;
+            else if (direction != d)
+                return 0;
+            }
+        return direction;
+    }
+    var sorted = isSorted(tr, fn);
+    if (sorted == 1 || sorted == -1) {
+        // if sorted already, reverse it
+        for(var i = tr.length - 1; i >= 0; --i)
+            tb.appendChild(tr[i]); // append each row in order
+    } else {
+        tr = tr.sort(fn);
+        for(var i = 0; i < tr.length; ++i)
+            tb.appendChild(tr[i]); // append each row in order
+    }
+}
+</script>
+
+<script>
+$( document ).ready(function(){
+            var cfg={'threshold':3,     // depth of toc (number of levels)
+             'number_sections': false,
+             'toc_cell': false,          // useless here
+             'toc_window_display': true, // display the toc window
+             "toc_section_display": "block", // display toc contents in the window
+             'sideBar':true,       // sidebar or floating window
+             'navigate_menu':false       // navigation menu (only in liveNotebook -- do not change)
+            }
+            var st={};                  // some variables used in the script
+            st.rendering_toc_cell = false;
+            st.config_loaded = false;
+            st.extension_initialized=false;
+            st.nbcontainer_marginleft = $('#notebook-container').css('margin-left')
+            st.nbcontainer_marginright = $('#notebook-container').css('margin-right')
+            st.nbcontainer_width = $('#notebook-container').css('width')
+            st.oldTocHeight = undefined
+            st.cell_toc = undefined;
+            st.toc_index=0;
+            // fire the main function with these parameters
+            table_of_contents(cfg, st);
+            var file=analysisDict[$("h1:first").attr("id")];
+            $("#toc-level0 a").css("color","#126dce");
+            $('a[href="#'+$("h1:first").attr("id")+'"]').hide()
+            var docs=analysisArray;
+            var docs_map=analysisArrayMap;
+            var pos=analysisArray.indexOf(file);
+            for (var a=pos;a>=0;a--){
+                  $('<li><a href="'+docs[a]+'.html"><font color="#073642"><b>'+docs_map[docs[a]].replace(/_/g," ")+'</b></font></a></li>').insertBefore("#toc-level0 li:eq(0)");
+            }
+            $('a[href="'+file+'.html'+'"]').css("color","#126dce");
+            for (var a=pos+1;a<docs.length;a++){
+                  $(".toc #toc-level0").append('<li><a href="'+docs[a]+'.html"><font color="#073642"><b>'+docs_map[docs[a]].replace(/_/g," ")+'</b></font></a></li>');
+            }
+            // $("#toc-header").hide(); // comment out because it prevents search bar from displaying
+    });
+</script>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+  // mark it active
+  menuAnchor.parent().addClass('active');
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+<div class="container-fluid main-container">
+<!-- tabsets -->
+<script src="../site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+
+
+<title>Yet another SuSiE benchmark</title>
+
+<style type = "text/css">
+body {
+  font-family: "Droid Sans";
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+</style>
+</head>
+
+<body>
+<div tabindex="-1" id="notebook" class="border-box-sizing">
+<div class="container" id="notebook-container">
+
+<!-- code folding -->
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">Yet another SuSiE benchmark</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+<li>
+  <a href="../index.html">Overview</a>
+</li>
+        
+<li>
+  <a href="../analysis.html">Analysis</a>
+</li>
+        
+      </ul>
+        
+<ul class="nav navbar-nav navbar-right">
+<li>
+   <a href="http://github.com/KaiqianZhang/dsc-susie"> <span class="fa fa-github"></span> </a>
+</li>
+</ul>
+        
+      </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-is-power-for-different-number-of-effects?">How is power for different number of effects?<a class="anchor-link" href="#How-is-power-for-different-number-of-effects?">&#182;</a></h1><p>Since simulated effects have certain correlation, we provide <code>mean_corX</code> to quantify such correlation. For each fixed number of nonzero effects $T \in \{2,3,5,10,20\}$, we investigate SuSiE power as pve changes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p>We observe that in the single cell data:</p>
+<ul>
+<li><p>As the number of effects increases, it becomes more difficult to achieve high power even if pve is large. But the power change when changing the number of nonzero effects is smaller than that in GTEx data.</p>
+</li>
+<li><p><code>mean_corX</code> does not seem to be a factor that causes a change in power. A decline in power is directly related to an increased number of nonzero effects.</p>
+</li>
+<li><p><code>mean_corX</code> is much smaller in single cell data than GTEx data. If this is related to a smaller change in power when varying the number of nonzero effects?</p>
+</li>
+<li><p>Furthermore, fdr is not necessaily larger when we have more number of nonzero effects.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell.summary<span class="p">[</span>singlecell.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">2</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
+<tbody>
+	<tr><th scope=row>2</th><td>2         </td><td>0.01      </td><td>0.02261397</td><td>0.05      </td><td>0.1667    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>8</th><td>2         </td><td>0.02      </td><td>0.02261397</td><td>0.18      </td><td>0.0526    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>14</th><td>2         </td><td>0.03      </td><td>0.02261397</td><td>0.34      </td><td>0.0286    </td><td>1.029412  </td></tr>
+	<tr><th scope=row>20</th><td>2         </td><td>0.05      </td><td>0.02261397</td><td>0.53      </td><td>0.0364    </td><td>1.170213  </td></tr>
+	<tr><th scope=row>26</th><td>2         </td><td>0.10      </td><td>0.02261397</td><td>0.58      </td><td>0.0333    </td><td>1.224490  </td></tr>
+	<tr><th scope=row>32</th><td>2         </td><td>0.20      </td><td>0.02261397</td><td>0.66      </td><td>0.0149    </td><td>1.367347  </td></tr>
+	<tr><th scope=row>38</th><td>2         </td><td>0.40      </td><td>0.02261397</td><td>0.73      </td><td>0.0135    </td><td>1.510204  </td></tr>
+	<tr><th scope=row>44</th><td>2         </td><td>0.50      </td><td>0.02261397</td><td>0.74      </td><td>0.0133    </td><td>1.530612  </td></tr>
+	<tr><th scope=row>50</th><td>2         </td><td>0.70      </td><td>0.02261397</td><td>0.78      </td><td>0.0127    </td><td>1.612245  </td></tr>
+	<tr><th scope=row>56</th><td>2         </td><td>0.90      </td><td>0.02261397</td><td>0.86      </td><td>0.0115    </td><td>1.775510  </td></tr>
+	<tr><th scope=row>62</th><td>2         </td><td>0.99      </td><td>0.02261397</td><td>0.92      </td><td>0.0108    </td><td>1.897959  </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell.summary<span class="p">[</span>singlecell.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">3</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
+<tbody>
+	<tr><th scope=row>3</th><td>3         </td><td>0.01      </td><td>0.01847963</td><td>0.0200    </td><td>0.2500    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>9</th><td>3         </td><td>0.02      </td><td>0.01847963</td><td>0.1467    </td><td>0.0435    </td><td>1.045455  </td></tr>
+	<tr><th scope=row>15</th><td>3         </td><td>0.03      </td><td>0.01847963</td><td>0.2200    </td><td>0.0294    </td><td>1.030303  </td></tr>
+	<tr><th scope=row>21</th><td>3         </td><td>0.05      </td><td>0.01847963</td><td>0.3533    </td><td>0.0000    </td><td>1.104167  </td></tr>
+	<tr><th scope=row>27</th><td>3         </td><td>0.10      </td><td>0.01847963</td><td>0.4600    </td><td>0.0143    </td><td>1.400000  </td></tr>
+	<tr><th scope=row>33</th><td>3         </td><td>0.20      </td><td>0.01847963</td><td>0.5467    </td><td>0.0120    </td><td>1.660000  </td></tr>
+	<tr><th scope=row>39</th><td>3         </td><td>0.40      </td><td>0.01847963</td><td>0.6400    </td><td>0.0000    </td><td>1.920000  </td></tr>
+	<tr><th scope=row>45</th><td>3         </td><td>0.50      </td><td>0.01847963</td><td>0.6533    </td><td>0.0000    </td><td>1.960000  </td></tr>
+	<tr><th scope=row>51</th><td>3         </td><td>0.70      </td><td>0.01847963</td><td>0.7133    </td><td>0.0000    </td><td>2.140000  </td></tr>
+	<tr><th scope=row>57</th><td>3         </td><td>0.90      </td><td>0.01847963</td><td>0.8467    </td><td>0.0000    </td><td>2.540000  </td></tr>
+	<tr><th scope=row>63</th><td>3         </td><td>0.99      </td><td>0.01847963</td><td>0.9267    </td><td>0.0000    </td><td>2.780000  </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell.summary<span class="p">[</span>singlecell.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">5</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
+<tbody>
+	<tr><th scope=row>4</th><td>5         </td><td>0.01      </td><td>0.01622105</td><td>0.008     </td><td>0.0000    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>10</th><td>5         </td><td>0.02      </td><td>0.01622105</td><td>0.056     </td><td>0.0000    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>16</th><td>5         </td><td>0.03      </td><td>0.01622105</td><td>0.124     </td><td>0.0312    </td><td>1.066667  </td></tr>
+	<tr><th scope=row>22</th><td>5         </td><td>0.05      </td><td>0.01622105</td><td>0.216     </td><td>0.0000    </td><td>1.200000  </td></tr>
+	<tr><th scope=row>28</th><td>5         </td><td>0.10      </td><td>0.01622105</td><td>0.308     </td><td>0.0000    </td><td>1.540000  </td></tr>
+	<tr><th scope=row>34</th><td>5         </td><td>0.20      </td><td>0.01622105</td><td>0.400     </td><td>0.0000    </td><td>2.000000  </td></tr>
+	<tr><th scope=row>40</th><td>5         </td><td>0.40      </td><td>0.01622105</td><td>0.528     </td><td>0.0000    </td><td>2.640000  </td></tr>
+	<tr><th scope=row>46</th><td>5         </td><td>0.50      </td><td>0.01622105</td><td>0.564     </td><td>0.0000    </td><td>2.820000  </td></tr>
+	<tr><th scope=row>52</th><td>5         </td><td>0.70      </td><td>0.01622105</td><td>0.648     </td><td>0.0000    </td><td>3.240000  </td></tr>
+	<tr><th scope=row>58</th><td>5         </td><td>0.90      </td><td>0.01622105</td><td>0.816     </td><td>0.0000    </td><td>4.080000  </td></tr>
+	<tr><th scope=row>64</th><td>5         </td><td>0.99      </td><td>0.01622105</td><td>0.908     </td><td>0.0000    </td><td>4.540000  </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell.summary<span class="p">[</span>singlecell.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">10</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
+<tbody>
+	<tr><th scope=row>5</th><td>10        </td><td>0.01      </td><td>0.01819252</td><td>0.006     </td><td>0         </td><td>1.000000  </td></tr>
+	<tr><th scope=row>11</th><td>10        </td><td>0.02      </td><td>0.01819252</td><td>0.020     </td><td>0         </td><td>1.000000  </td></tr>
+	<tr><th scope=row>17</th><td>10        </td><td>0.03      </td><td>0.01819252</td><td>0.058     </td><td>0         </td><td>1.035714  </td></tr>
+	<tr><th scope=row>23</th><td>10        </td><td>0.05      </td><td>0.01819252</td><td>0.092     </td><td>0         </td><td>1.045455  </td></tr>
+	<tr><th scope=row>29</th><td>10        </td><td>0.10      </td><td>0.01819252</td><td>0.144     </td><td>0         </td><td>1.440000  </td></tr>
+	<tr><th scope=row>35</th><td>10        </td><td>0.20      </td><td>0.01819252</td><td>0.226     </td><td>0         </td><td>2.260000  </td></tr>
+	<tr><th scope=row>41</th><td>10        </td><td>0.40      </td><td>0.01819252</td><td>0.312     </td><td>0         </td><td>3.120000  </td></tr>
+	<tr><th scope=row>47</th><td>10        </td><td>0.50      </td><td>0.01819252</td><td>0.356     </td><td>0         </td><td>3.560000  </td></tr>
+	<tr><th scope=row>53</th><td>10        </td><td>0.70      </td><td>0.01819252</td><td>0.468     </td><td>0         </td><td>4.680000  </td></tr>
+	<tr><th scope=row>59</th><td>10        </td><td>0.90      </td><td>0.01819252</td><td>0.636     </td><td>0         </td><td>6.360000  </td></tr>
+	<tr><th scope=row>65</th><td>10        </td><td>0.99      </td><td>0.01819252</td><td>0.826     </td><td>0         </td><td>8.260000  </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell.summary<span class="p">[</span>singlecell.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">20</span><span class="p">,]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
+<tbody>
+	<tr><th scope=row>6</th><td>20        </td><td>0.01      </td><td>0.01834542</td><td>0.002     </td><td>0.3333    </td><td> 1.500000 </td></tr>
+	<tr><th scope=row>12</th><td>20        </td><td>0.02      </td><td>0.01834542</td><td>0.007     </td><td>0.1250    </td><td> 1.142857 </td></tr>
+	<tr><th scope=row>18</th><td>20        </td><td>0.03      </td><td>0.01834542</td><td>0.018     </td><td>0.0526    </td><td> 1.117647 </td></tr>
+	<tr><th scope=row>24</th><td>20        </td><td>0.05      </td><td>0.01834542</td><td>0.039     </td><td>0.0250    </td><td> 1.111111 </td></tr>
+	<tr><th scope=row>30</th><td>20        </td><td>0.10      </td><td>0.01834542</td><td>0.072     </td><td>0.0137    </td><td> 1.520833 </td></tr>
+	<tr><th scope=row>36</th><td>20        </td><td>0.20      </td><td>0.01834542</td><td>0.135     </td><td>0.0074    </td><td> 2.720000 </td></tr>
+	<tr><th scope=row>42</th><td>20        </td><td>0.40      </td><td>0.01834542</td><td>0.219     </td><td>0.0000    </td><td> 4.380000 </td></tr>
+	<tr><th scope=row>48</th><td>20        </td><td>0.50      </td><td>0.01834542</td><td>0.246     </td><td>0.0040    </td><td> 4.940000 </td></tr>
+	<tr><th scope=row>54</th><td>20        </td><td>0.70      </td><td>0.01834542</td><td>0.353     </td><td>0.0028    </td><td> 7.080000 </td></tr>
+	<tr><th scope=row>60</th><td>20        </td><td>0.90      </td><td>0.01834542</td><td>0.530     </td><td>0.0019    </td><td>10.620000 </td></tr>
+	<tr><th scope=row>66</th><td>20        </td><td>0.99      </td><td>0.01834542</td><td>0.761     </td><td>0.0013    </td><td>15.240000 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Code-details">Code details<a class="anchor-link" href="#Code-details">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell_Q1 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;singlecell_Q1.rds&#39;</span><span class="p">)</span>
+singlecell_Q1 <span class="o">=</span> singlecell_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>singlecell_Q1<span class="o">$</span>sim_gaussian.output.file<span class="p">),]</span>
+singlecell_Q1 <span class="o">=</span> singlecell_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>singlecell_Q1<span class="o">$</span>susie.output.file<span class="p">),]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>singlecell_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>singlecell_Q1<span class="o">$</span>sim_gaussian.effect_num<span class="p">,</span> singlecell_Q1<span class="o">$</span>sim_gaussian.pve<span class="p">,</span> 
+                       singlecell_Q1<span class="o">$</span>sim_gaussian.mean_corX<span class="p">,</span> singlecell_Q1<span class="o">$</span>score.hit<span class="p">,</span> singlecell_Q1<span class="o">$</span>score.signal_num<span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>singlecell_df<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;effect_num&#39;</span><span class="p">,</span> <span class="s">&#39;pve&#39;</span><span class="p">,</span> <span class="s">&#39;mean_corX&#39;</span><span class="p">,</span> <span class="s">&#39;hit&#39;</span><span class="p">,</span> <span class="s">&#39;cs_num&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>corX.summary <span class="o">=</span> aggregate<span class="p">(</span>mean_corX <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> singlecell_df<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
+singlecell.summary <span class="o">=</span> corX.summary
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>meannonzero <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span><span class="kp">mean</span><span class="p">(</span>x<span class="p">[</span>x<span class="o">!=</span><span class="m">0</span><span class="p">])}</span>
+hitmean.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> singlecell_df<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
+singlecell.summary<span class="o">$</span>power <span class="o">=</span> <span class="kp">round</span><span class="p">(</span>hitmean.summary<span class="o">$</span>hit <span class="o">/</span> singlecell.summary<span class="o">$</span>effect_num<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>hitsum.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> singlecell_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
+cs_numsum.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> singlecell_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
+singlecell.summary<span class="o">$</span>fdr <span class="o">=</span> <span class="kp">round</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> hitsum.summary<span class="o">$</span>hit <span class="o">/</span> cs_numsum.summary<span class="o">$</span>cs_num<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>cs_num.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> singlecell_df<span class="p">,</span> meannonzero<span class="p">)</span>
+singlecell.summary<span class="o">$</span>cs_num <span class="o">=</span> cs_num.summary<span class="o">$</span>cs_num
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>is.nan.data.frame <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span>
+<span class="kp">do.call</span><span class="p">(</span><span class="kp">cbind</span><span class="p">,</span> <span class="kp">lapply</span><span class="p">(</span>x<span class="p">,</span> <span class="kp">is.nan</span><span class="p">))</span>
+singlecell.summary<span class="p">[</span><span class="kp">is.nan</span><span class="p">(</span>singlecell.summary<span class="p">)]</span> <span class="o">=</span> <span class="m">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<hr>
+&copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/1b8582531303c1ffc60993c948750a739d782d79/analysis/singlecell3.ipynb"><code>analysis/singlecell3.ipynb</code></a> committed by KaiqianZhang on Wed Sep 5 21:43:53 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/1b8582531303c1ffc60993c948750a739d782d79">revision 1, 1b85825</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+</div>
+</div>
+</body>
+</html>

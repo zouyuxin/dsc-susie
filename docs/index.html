@@ -7,7 +7,7 @@
 <meta name="ipynb_website:version" content="0.9.5" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Another SuSiE benchmark</title>
+<title>Yet another SuSiE benchmark</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -173,7 +173,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Another SuSiE benchmark</a>
+      <a class="navbar-brand" href="index.html">Yet another SuSiE benchmark</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -201,47 +201,50 @@ $(document).ready(function () {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="dsc-susie">dsc-susie<a class="anchor-link" href="#dsc-susie">&#182;</a></h1><p>This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix X, e.g. from GTEx, single-cell, or GSEA data.</p>
-<p>Our intention is to investigate if SuSiE has a good interpretation (i.e. catch right effects in the selected sets) in the context of different X structures.</p>
-<h1 id="The-goal:">The goal:<a class="anchor-link" href="#The-goal:">&#182;</a></h1><p>The goal is to compare several versions of SuSiE (e.g. using initialization or not, estimating prior variance or not) for different data sets using various numbers of effects.</p>
-<p>Inputs:</p>
+<h1 id="SuSiE-demonstrated-in-DSC">SuSiE demonstrated in DSC<a class="anchor-link" href="#SuSiE-demonstrated-in-DSC">&#182;</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h2><p>This is a Dynamic Statistical Comparison for testing SuSiE performance given a design matrix <code>X</code> from real data, e.g. GTEx, single cell, or GSEA data.</p>
+<p>Our goal is to investigate how SuSiE performs (see "evaluation criteria" below) in the context of different X structures.</p>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><h3 id="GTEx-gene-expression-data">GTEx gene expression data<a class="anchor-link" href="#GTEx-gene-expression-data">&#182;</a></h3><p>Gene expression from two tissues: whole blood and brain cells. Design matrix <code>X</code> is gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes.</p>
+<h3 id="Single-cell-gene-expression-data">Single cell gene expression data<a class="anchor-link" href="#Single-cell-gene-expression-data">&#182;</a></h3><p>Gene expression of two types of hard-to-distinguished cells. Design matrix <code>X</code> has 600 regulatory T cells and 600 memory T cells on 1000 genes.</p>
+<h3 id="GSEA-gene-set-data">GSEA gene-set data<a class="anchor-link" href="#GSEA-gene-set-data">&#182;</a></h3><p>Gene-set / pathway annotation of genes. Design matrix <code>X</code> has 1200 genes on 1000 pathways. Each column is a gene-set / pathway of binary coding where <code>1</code> indicates the corresponding row (gene) is in the gene-set, <code>0</code> otherwise.</p>
+<h3 id="Random-data">Random data<a class="anchor-link" href="#Random-data">&#182;</a></h3><p>Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from <code>rnorm(0,1)</code>.</p>
+<h3 id="GTEx-genotype-data">GTEx genotype data<a class="anchor-link" href="#GTEx-genotype-data">&#182;</a></h3><p>[FIXME] use <code>X</code> from <a href="https://github.com/stephenslab/susieR/blob/master/inst/data/N3finemapping.rds">here</a></p>
+<h2 id="Simulation">Simulation<a class="anchor-link" href="#Simulation">&#182;</a></h2><p>We simulate 50 datasets. For each dataset, we simulate a gaussian <code>y</code> under various number of causal variables and total percentage of variance explained (PVE).</p>
+<h2 id="Analysis-methods">Analysis methods<a class="anchor-link" href="#Analysis-methods">&#182;</a></h2><p>We run SuSiE to investigate various questions of interest. For instance, performance on different data-set, factors that impact power, choice of priors, and so on. See "Investigations" section below.</p>
+<h2 id="Performance-evaluation-criteria">Performance evaluation criteria<a class="anchor-link" href="#Performance-evaluation-criteria">&#182;</a></h2><p>We evaluate SuSiE performance by the following four numerical values:</p>
 <ul>
-<li>$pathX a string path for an n by p design matrix X (n is the number samples, p is the number of genes)</li>
-<li>$pathy a string path for an n vector y</li>
-<li>effect_num: a scalar the number of nonzero effects</li>
-<li>pve: a scalar proportion variance explained</li>
-<li>s_init: 1 denotes using L0Learn initialization, 0 otherwise</li>
-<li>estimate_prior_variance: 0 denotes do not estimate prior variance, 0.2 denotes that using default prior variance 0.2, 1 denotes estimating prior variance from data</li>
+<li><strong>Power</strong>: number of confidence sets (CS) that contain at least one true effect, divided by number of true effects</li>
+<li><p><strong>FDR</strong>: an estimate for false discovery rate, 1 - (number of CS that contain at least one true effect devided by number of CS reported)</p>
+</li>
+<li><p><strong>CS number</strong>: number of CS reported</p>
+</li>
+<li><p><strong>CS size</strong>: median size of CS reported</p>
+</li>
+<li><p><strong>CS purity</strong>: average "purity" of CS, an indication of correlation of variables within CS</p>
+</li>
+<li><p><strong>top hit rate</strong>: define "top hit" as a true effect that receives a SuSiE posterior inclusion probability (PIP) being the highest PIP among all variables in the same reported CS. Top hit rate is then given by the number of top hit divided by the number of CS that contains at least one true effect.</p>
+</li>
 </ul>
-<p>Outputs:</p>
+<h2 id="Investigations">Investigations<a class="anchor-link" href="#Investigations">&#182;</a></h2><p>[FIXME: add links]</p>
+<h3 id="GTEx-gene-expression-data">GTEx gene expression data<a class="anchor-link" href="#GTEx-gene-expression-data">&#182;</a></h3><ul>
+<li><p>Power of SuSiE</p>
 <ul>
-<li>$fit a susie fit</li>
-<li>$cs a susie cs</li>
-<li>$n_iter a scalar number of iterations</li>
-<li>$pred_err a scalar prediction error using 80% training and 20% testing</li>
-<li>$cs_length a scalar number of confidence sets selected by SuSiE</li>
-<li>$hit a scalar the number of cs sets that includes at least a true effect</li>
-<li>$dup_bool a boolean 1 if there are duplicates among confidence sets, 0 otherwise</li>
+<li><a href="analysis/gtex1.html">one non-zero effects</a></li>
+<li>multiple non-zero effects</li>
 </ul>
-<h1 id="Data-and-simulation">Data and simulation<a class="anchor-link" href="#Data-and-simulation">&#182;</a></h1><p>Given a design matrix X and a binary vector y, we estimate the variance of y using glmnet and construct a simulated y both quantitatively and binarily (e.g. using logistic link). When creating a simulated y, we also allow for various number of effects (e.g. effect_num = 0, 1, 5, 10, 200).</p>
-<p>Input:</p>
+</li>
+<li><p>Choice of prior</p>
 <ul>
-<li>file path of data X and y</li>
+<li>one non-zero effect</li>
+<li>two non-zero effects</li>
 </ul>
-<p>Output:</p>
+</li>
+<li><p>Large number of causal variables</p>
 <ul>
-<li>$sim_gaussian_y an n vector a simulated gaussian y</li>
-<li>$sim_gaussian_largeEffect_y an n vector a simulated gaussian y when number of effects is 200</li>
-<li>$sim_binary_y an n vector a simulated binary y</li>
-<li>$sim_binary_largeEffect_y an n vector a simulated binary y when number of effects is 200</li>
+<li>performance of 200 nonzero effects</li>
 </ul>
-<h1 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h1><ul>
-<li>susie for simulated gaussian y for small number of effects with or without initialization</li>
-<li>susie for simulated gaussian y for large number of effects with or without initialization</li>
-<li>susie for simulated binary y for small number of effects with or without initialization</li>
-<li>susie for simulated binary y for large number of effects with or without initialization</li>
+</li>
 </ul>
-<h1 id="Run-DSC">Run DSC<a class="anchor-link" href="#Run-DSC">&#182;</a></h1><p>The main DSC file is <code>benchmarks.dsc</code>. To see what is available:</p>
+<h2 id="DSC-instructions">DSC instructions<a class="anchor-link" href="#DSC-instructions">&#182;</a></h2><h3 id="General-instructions">General instructions<a class="anchor-link" href="#General-instructions">&#182;</a></h3><p>The main DSC file is <code>benchmarks.dsc</code>. To see what is available:</p>
 
 <pre><code>./benchmark.dsc -h</code></pre>
 <p>before running,</p>
@@ -250,9 +253,12 @@ $(document).ready(function () {
 <p>and to run the benchmark:</p>
 
 <pre><code>dsc benchmark.dsc --replicate 10</code></pre>
-<p>Or to run a minimal test benchmark, eg</p>
+<p>Or to run a minimal test benchmark, e.g.</p>
 
 <pre><code>dsc benchmark.dsc --truncate</code></pre>
+<p>[FIXME: add a note on cluster run]</p>
+<h3 id="Input-X">Input <code>X</code><a class="anchor-link" href="#Input-X">&#182;</a></h3><p>[FIXME: now i believe as discussed you do it differently (and better). Please change the description below.]</p>
+<p>To input a customized design matrix <code>X</code>, please go to <code>benchmark.dsc</code>. At the bottom, change the <code>pathX</code> to the path of your matrix <code>X</code> as you want.</p>
 
 </div>
 </div>

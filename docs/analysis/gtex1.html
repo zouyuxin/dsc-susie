@@ -184,7 +184,7 @@ $(document).ready(function () {
 
 
 
-<title>Another SuSiE benchmark</title>
+<title>Yet another SuSiE benchmark</title>
 
 <style type = "text/css">
 body {
@@ -209,7 +209,7 @@ body {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">Another SuSiE benchmark</a>
+      <a class="navbar-brand" href="../index.html">Yet another SuSiE benchmark</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -233,15 +233,77 @@ body {
       </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-is-power-under-different-PVEs?">How is power under different PVEs?<a class="anchor-link" href="#How-is-power-under-different-PVEs?">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assume only one nonzero effect $T = 1$. Assume that prior is 0.2.</p>
+<p>We investigate SuSiE's power when pve $\in \{0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.4, 0.5, 0.7, 0.9, 0.99\}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p>We observe that when pve reaches $0.1$, SuSiE's power is greater than and equal to $0.98$. And fdr is almost 0.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>knitr<span class="o">::</span>opts_chunk<span class="o">$</span>set<span class="p">(</span>echo <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_summary
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>power</th><th scope=col>fdr</th></tr></thead>
+<tbody>
+	<tr><td>1     </td><td>0.01  </td><td>0.00  </td><td>1.0000</td></tr>
+	<tr><td>1     </td><td>0.02  </td><td>0.16  </td><td>0.1111</td></tr>
+	<tr><td>1     </td><td>0.03  </td><td>0.30  </td><td>0.0625</td></tr>
+	<tr><td>1     </td><td>0.05  </td><td>0.66  </td><td>0.0294</td></tr>
+	<tr><td>1     </td><td>0.10  </td><td>0.98  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.20  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.40  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.50  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.70  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.90  </td><td>1.00  </td><td>0.0000</td></tr>
+	<tr><td>1     </td><td>0.99  </td><td>1.00  </td><td>0.0000</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -250,19 +312,18 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Generate the DSC results: (eval set to FALSE to avoid running)</p>
-
+<h2 id="Code-details">Code details<a class="anchor-link" href="#Code-details">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="kp">setwd</span><span class="p">(</span><span class="s">&quot;..&quot;</span><span class="p">)</span>
-<span class="kp">system</span><span class="p">(</span><span class="s">&quot;dsc benchmark.dsc --replicate 20&quot;</span><span class="p">)</span>
-<span class="kp">setwd</span><span class="p">(</span><span class="s">&quot;analysis&quot;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_Q1 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;dscout_Q1.rds&#39;</span><span class="p">)</span>
+dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.output.file<span class="p">),]</span>
+dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>susie.output.file<span class="p">),]</span>
 </pre></div>
 
 </div>
@@ -270,23 +331,14 @@ body {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we extract the DSC results:</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="kn">library</span><span class="p">(</span>dscrutils<span class="p">)</span>
-dscout <span class="o">&lt;-</span> dscquery<span class="p">(</span>dsc.outdir <span class="o">=</span> <span class="s">&quot;../benchmark&quot;</span><span class="p">,</span>
-                   targets    <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;simulate.scenario&quot;</span><span class="p">,</span><span class="s">&quot;analyze&quot;</span><span class="p">,</span><span class="s">&quot;score.err&quot;</span><span class="p">))</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.effect_num<span class="p">,</span> dscout_Q1<span class="o">$</span>sim_gaussian.pve<span class="p">,</span> 
+                       dscout_Q1<span class="o">$</span>score.hit<span class="p">,</span> dscout_Q1<span class="o">$</span>score.signal_num<span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>dscout_df<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;effect_num&#39;</span><span class="p">,</span> <span class="s">&#39;pve&#39;</span><span class="p">,</span> <span class="s">&#39;hit&#39;</span><span class="p">,</span> <span class="s">&#39;cs_num&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -294,27 +346,12 @@ dscout <span class="o">&lt;-</span> dscquery<span class="p">(</span>dsc.outdir <
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we add a column that for each method/scenario combination includes the median error across methods</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="kn">library</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
-<span class="kn">library</span><span class="p">(</span><span class="s">&quot;magrittr&quot;</span><span class="p">)</span>
-temp <span class="o">=</span> dscout <span class="o">%&gt;%</span>
-  group_by<span class="p">(</span>DSC<span class="p">,</span> simulate.scenario<span class="p">,</span> score<span class="p">)</span> <span class="o">%&gt;%</span>
-  summarize<span class="p">(</span>median.err <span class="o">=</span> median<span class="p">(</span>score.err<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
-dscout <span class="o">=</span> inner_join<span class="p">(</span>temp<span class="p">,</span>dscout<span class="p">)</span>
-dscout<span class="o">$</span>err.diff <span class="o">=</span>  dscout<span class="o">$</span>score.err <span class="o">-</span> dscout<span class="o">$</span>median.err
+<div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> dscout_df<span class="p">[</span>dscout_df<span class="o">$</span>effect_num<span class="o">==</span><span class="m">1</span><span class="p">,]</span>
 </pre></div>
 
 </div>
@@ -322,24 +359,17 @@ dscout<span class="o">$</span>err.diff <span class="o">=</span>  dscout<span cla
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now view using an interactive Shiny plot</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>shiny_plot<span class="p">(</span><span class="kp">subset</span><span class="p">(</span>dscout<span class="p">,</span>score <span class="o">==</span> <span class="s">&quot;pred_err&quot;</span><span class="p">),</span>
-				 <span class="s">&quot;simulate.scenario&quot;</span><span class="p">,</span><span class="s">&quot;analyze&quot;</span><span class="p">)</span>
-shiny_plot<span class="p">(</span><span class="kp">subset</span><span class="p">(</span>dscout<span class="p">,</span>score <span class="o">==</span> <span class="s">&quot;coef_err&quot;</span><span class="p">),</span>
-				 <span class="s">&quot;simulate.scenario&quot;</span><span class="p">,</span><span class="s">&quot;analyze&quot;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
+dscout_summary<span class="o">$</span>power <span class="o">=</span> dscout_summary<span class="o">$</span>hit <span class="o">/</span> <span class="m">50</span>
+fdr.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
+fdr.summary<span class="o">$</span>fdr <span class="o">=</span> <span class="kp">round</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> dscout_summary<span class="o">$</span>hit <span class="o">/</span> fdr.summary<span class="o">$</span>cs_num<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+dscout_summary<span class="o">$</span>hit <span class="o">=</span> <span class="kc">NULL</span>
+dscout_summary<span class="o">$</span>fdr <span class="o">=</span> fdr.summary<span class="o">$</span>fdr
 </pre></div>
 
 </div>
@@ -347,17 +377,24 @@ shiny_plot<span class="p">(</span><span class="kp">subset</span><span class="p">
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>is.nan.data.frame <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span>
+<span class="kp">do.call</span><span class="p">(</span><span class="kp">cbind</span><span class="p">,</span> <span class="kp">lapply</span><span class="p">(</span>x<span class="p">,</span> <span class="kp">is.nan</span><span class="p">))</span>
+dscout_summary<span class="p">[</span><span class="kp">is.nan</span><span class="p">(</span>dscout_summary<span class="p">)]</span> <span class="o">=</span> <span class="m">0</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 <hr>
 &copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
-<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob//analysis/00results.ipynb"><code>analysis/00results.ipynb</code></a> committed by Gao Wang on Sun Aug 26 18:01:46 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/">revision 0, </a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/1b8582531303c1ffc60993c948750a739d782d79/analysis/gtex1.ipynb"><code>analysis/gtex1.ipynb</code></a> committed by KaiqianZhang on Wed Sep 5 21:43:53 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/1b8582531303c1ffc60993c948750a739d782d79">revision 1, 1b85825</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
 </div>
 </div>
 </body>

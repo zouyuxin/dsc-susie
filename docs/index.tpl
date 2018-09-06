@@ -10,7 +10,7 @@
 <meta name="ipynb_website:version" content="0.9.5" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Another SuSiE benchmark</title>
+<title>Yet another SuSiE benchmark</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -176,7 +176,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Another SuSiE benchmark</a>
+      <a class="navbar-brand" href="index.html">Yet another SuSiE benchmark</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
