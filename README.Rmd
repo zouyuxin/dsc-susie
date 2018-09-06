@@ -69,6 +69,8 @@ We evaluate SuSiE performance by the following four numerical values:
   - Large number of causal variables
     - performance of 200 nonzero effects
 
+  - Different initialization methods
+
 ## DSC instructions
 
 ### General instructions
