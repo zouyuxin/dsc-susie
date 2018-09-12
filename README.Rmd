@@ -20,14 +20,10 @@ Gene expression of two types of hard-to-distinguished cells. Design matrix `X` h
 
 Gene-set / pathway annotation of genes. Design matrix `X` has 1200 genes on 1000 pathways. Each column is a gene-set / pathway of binary coding where `1` indicates the corresponding row (gene) is in the gene-set, `0` otherwise.
 
-### Random data
+### Randomly generated data
 
-Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from `rnorm(0,1)`.
+Randomly generated data are a 1200 by 1000 matrix, each entry of which is randomly generated from `rnorm(0,1)`.
 
-
-### GTEx genotype data
-
-Design matrix `X` is a 574 by 1001 matrix. 
 ## Simulation
 
 We simulate 50 datasets. For each dataset, we simulate a gaussian `y` under various number of causal variables and total percentage of variance explained (PVE).
@@ -80,6 +76,36 @@ We evaluate SuSiE performance by the following four numerical values:
 
   - Large number of causal variables
     - [performance of 200 non-zero effects](analysis/Single_cell_analysis_5.html)
+
+  - Different initialization methods
+
+### GSEA gene-set data
+
+  - Power of SuSiE
+    - [one non-zero effects](analysis/GSEA_analysis_1.html)
+    - [multiple non-zero effects](analysis/GSEA_analysis_2.html)
+
+  - Choice of prior
+    - [one non-zero effect](analysis/GSEA_analysis_3.html) 
+    - [two non-zero effects](analysis/GSEA_analysis_4.html)
+
+  - Large number of causal variables
+    - [performance of 200 non-zero effects](analysis/GSEA_analysis_5.html)
+
+  - Different initialization methods
+  
+### Randomly generated data
+
+  - Power of SuSiE
+    - [one non-zero effects](analysis/randomX_analysis_1.html)
+    - [multiple non-zero effects](analysis/randomX_analysis_2.html)
+
+  - Choice of prior
+    - [one non-zero effect](analysis/randomX_analysis_3.html) 
+    - [two non-zero effects](analysis/randomX_analysis_4.html)
+
+  - Large number of causal variables
+    - [performance of 200 non-zero effects](analysis/randomX_analysis_5.html)
 
   - Different initialization methods
 
