@@ -206,8 +206,7 @@ $(document).ready(function () {
 <h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><h3 id="GTEx-gene-expression-data">GTEx gene expression data<a class="anchor-link" href="#GTEx-gene-expression-data">&#182;</a></h3><p>Gene expression from two tissues: whole blood and brain cells. Design matrix <code>X</code> is a gene expression matrix from 755 whole blood and 439 brain cell samples on 1000 genes.</p>
 <h3 id="Single-cell-gene-expression-data">Single cell gene expression data<a class="anchor-link" href="#Single-cell-gene-expression-data">&#182;</a></h3><p>Gene expression of two types of hard-to-distinguished cells. Design matrix <code>X</code> has 600 regulatory T cells and 600 memory T cells on 1000 genes.</p>
 <h3 id="GSEA-gene-set-data">GSEA gene-set data<a class="anchor-link" href="#GSEA-gene-set-data">&#182;</a></h3><p>Gene-set / pathway annotation of genes. Design matrix <code>X</code> has 1200 genes on 1000 pathways. Each column is a gene-set / pathway of binary coding where <code>1</code> indicates the corresponding row (gene) is in the gene-set, <code>0</code> otherwise.</p>
-<h3 id="Random-data">Random data<a class="anchor-link" href="#Random-data">&#182;</a></h3><p>Random data are a 1200 by 1000 matrix, each entry of which is randomly generated from <code>rnorm(0,1)</code>.</p>
-<h3 id="GTEx-genotype-data">GTEx genotype data<a class="anchor-link" href="#GTEx-genotype-data">&#182;</a></h3><p>Design matrix <code>X</code> is a 574 by 1001 matrix.</p>
+<h3 id="Randomly-generated-data">Randomly generated data<a class="anchor-link" href="#Randomly-generated-data">&#182;</a></h3><p>Randomly generated data are a 1200 by 1000 matrix, each entry of which is randomly generated from <code>rnorm(0,1)</code>.</p>
 <h2 id="Simulation">Simulation<a class="anchor-link" href="#Simulation">&#182;</a></h2><p>We simulate 50 datasets. For each dataset, we simulate a gaussian <code>y</code> under various number of causal variables and total percentage of variance explained (PVE).</p>
 <h2 id="Analysis-methods">Analysis methods<a class="anchor-link" href="#Analysis-methods">&#182;</a></h2><p>We run SuSiE to investigate various questions of interest. For instance, performance on different dataset, factors that impact power, choice of priors, and so on. See "Investigations" section below.</p>
 <h2 id="Performance-evaluation-criteria">Performance evaluation criteria<a class="anchor-link" href="#Performance-evaluation-criteria">&#182;</a></h2><p>We evaluate SuSiE performance by the following four numerical values:</p>
@@ -261,6 +260,48 @@ $(document).ready(function () {
 <li><p>Large number of causal variables</p>
 <ul>
 <li><a href="analysis/Single_cell_analysis_5.html">performance of 200 non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Different initialization methods</p>
+</li>
+</ul>
+<h3 id="GSEA-gene-set-data">GSEA gene-set data<a class="anchor-link" href="#GSEA-gene-set-data">&#182;</a></h3><ul>
+<li><p>Power of SuSiE</p>
+<ul>
+<li><a href="analysis/GSEA_analysis_1.html">one non-zero effects</a></li>
+<li><a href="analysis/GSEA_analysis_2.html">multiple non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Choice of prior</p>
+<ul>
+<li><a href="analysis/GSEA_analysis_3.html">one non-zero effect</a></li>
+<li><a href="analysis/GSEA_analysis_4.html">two non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Large number of causal variables</p>
+<ul>
+<li><a href="analysis/GSEA_analysis_5.html">performance of 200 non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Different initialization methods</p>
+</li>
+</ul>
+<h3 id="Randomly-generated-data">Randomly generated data<a class="anchor-link" href="#Randomly-generated-data">&#182;</a></h3><ul>
+<li><p>Power of SuSiE</p>
+<ul>
+<li><a href="analysis/randomX_analysis_1.html">one non-zero effects</a></li>
+<li><a href="analysis/randomX_analysis_2.html">multiple non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Choice of prior</p>
+<ul>
+<li><a href="analysis/randomX_analysis_3.html">one non-zero effect</a></li>
+<li><a href="analysis/randomX_analysis_4.html">two non-zero effects</a></li>
+</ul>
+</li>
+<li><p>Large number of causal variables</p>
+<ul>
+<li><a href="analysis/randomX_analysis_5.html">performance of 200 non-zero effects</a></li>
 </ul>
 </li>
 <li><p>Different initialization methods</p>

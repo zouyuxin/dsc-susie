@@ -1,5 +1,10 @@
 docs/analysis.html
 docs/analysis.tpl
+docs/analysis/GSEA_analysis_1.html
+docs/analysis/GSEA_analysis_2.html
+docs/analysis/GSEA_analysis_3.html
+docs/analysis/GSEA_analysis_4.html
+docs/analysis/GSEA_analysis_5.html
 docs/analysis/GTEx_gene_expression_analysis_1.html
 docs/analysis/GTEx_gene_expression_analysis_2.html
 docs/analysis/GTEx_gene_expression_analysis_3.html
@@ -10,6 +15,11 @@ docs/analysis/Single_cell_analysis_2.html
 docs/analysis/Single_cell_analysis_3.html
 docs/analysis/Single_cell_analysis_4.html
 docs/analysis/Single_cell_analysis_5.html
+docs/analysis/randomX_analysis_1.html
+docs/analysis/randomX_analysis_2.html
+docs/analysis/randomX_analysis_3.html
+docs/analysis/randomX_analysis_4.html
+docs/analysis/randomX_analysis_5.html
 docs/index.html
 docs/index.tpl
 docs/js/docs.js

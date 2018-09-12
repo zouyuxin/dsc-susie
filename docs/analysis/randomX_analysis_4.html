@@ -245,8 +245,8 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Assume two non-zero effects $T = 2$. We set PVE $ = 0.05$ so that SuSiE has certain power around $0.38$. 
-We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate SuSiE performance under different priors.</p>
+<p>Assume two non-zero effects $T = 2$. We set PVE $ = 0.05$ so that SuSiE has certain power around $0.5$. 
+We also set PVE $ = 0.7$ so that SuSiE has power around $0.9$. We investigate SuSiE performance under different priors.</p>
 
 </div>
 </div>
@@ -255,22 +255,14 @@ We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate S
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong> - Summary: prior has a modest influence on SuSiE's performance. </strong></p>
-<p>When $pve = 0.05$,</p>
-<ul>
-<li>a larger prior has a slighler lower FDR and a slightly higher top_hit_rate.</li>
-</ul>
-<p>When $pve = 0.7$,</p>
-<ul>
-<li>a larger prior has a slightly larger power and lower FDR. And cs_size will increase given a larger prior. </li>
-</ul>
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong> - Summary: prior has a modest influence on SuSiE's performance. The size of confidence sets in the randomly generated X data is always 1. When PVE is large, the number of confidence sets produced is close to true number of non-zero effects.</strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>pve<span class="o">==</span><span class="m">0.05</span><span class="p">,]</span>
@@ -294,17 +286,17 @@ We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate S
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>prior</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_size</th><th scope=col>cs_num</th><th scope=col>top_hit_rate</th><th scope=col>avg_purity</th></tr></thead>
 <tbody>
-	<tr><th scope=row>20</th><td>2        </td><td>0.05     </td><td>0.01     </td><td>0.34     </td><td>0.0000   </td><td>2.117647 </td><td>1        </td><td>0.9412   </td><td>0.9291165</td></tr>
-	<tr><th scope=row>86</th><td>2        </td><td>0.05     </td><td>0.02     </td><td>0.36     </td><td>0.0526   </td><td>1.842105 </td><td>1        </td><td>0.8684   </td><td>0.9385918</td></tr>
-	<tr><th scope=row>152</th><td>2        </td><td>0.05     </td><td>0.03     </td><td>0.37     </td><td>0.0513   </td><td>1.666667 </td><td>1        </td><td>0.8718   </td><td>0.9429208</td></tr>
-	<tr><th scope=row>218</th><td>2        </td><td>0.05     </td><td>0.05     </td><td>0.38     </td><td>0.0500   </td><td>1.550000 </td><td>1        </td><td>0.8750   </td><td>0.9522987</td></tr>
-	<tr><th scope=row>284</th><td>2        </td><td>0.05     </td><td>0.10     </td><td>0.38     </td><td>0.0500   </td><td>1.450000 </td><td>1        </td><td>0.9000   </td><td>0.9609036</td></tr>
-	<tr><th scope=row>350</th><td>2        </td><td>0.05     </td><td>0.20     </td><td>0.38     </td><td>0.0500   </td><td>1.425000 </td><td>1        </td><td>0.9000   </td><td>0.9627169</td></tr>
-	<tr><th scope=row>416</th><td>2        </td><td>0.05     </td><td>0.40     </td><td>0.38     </td><td>0.0500   </td><td>1.400000 </td><td>1        </td><td>0.9000   </td><td>0.9627169</td></tr>
-	<tr><th scope=row>482</th><td>2        </td><td>0.05     </td><td>0.50     </td><td>0.38     </td><td>0.0500   </td><td>1.375000 </td><td>1        </td><td>0.9000   </td><td>0.9686246</td></tr>
-	<tr><th scope=row>548</th><td>2        </td><td>0.05     </td><td>0.70     </td><td>0.38     </td><td>0.0500   </td><td>1.375000 </td><td>1        </td><td>0.9000   </td><td>0.9686246</td></tr>
-	<tr><th scope=row>614</th><td>2        </td><td>0.05     </td><td>0.90     </td><td>0.38     </td><td>0.0500   </td><td>1.375000 </td><td>1        </td><td>0.9000   </td><td>0.9686246</td></tr>
-	<tr><th scope=row>680</th><td>2        </td><td>0.05     </td><td>0.99     </td><td>0.38     </td><td>0.0500   </td><td>1.375000 </td><td>1        </td><td>0.9000   </td><td>0.9686246</td></tr>
+	<tr><th scope=row>20</th><td>2       </td><td>0.05    </td><td>0.01    </td><td>0.50    </td><td>0       </td><td>1       </td><td>1.063830</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>86</th><td>2       </td><td>0.05    </td><td>0.02    </td><td>0.51    </td><td>0       </td><td>1       </td><td>1.085106</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>152</th><td>2       </td><td>0.05    </td><td>0.03    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>218</th><td>2       </td><td>0.05    </td><td>0.05    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>284</th><td>2       </td><td>0.05    </td><td>0.10    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>350</th><td>2       </td><td>0.05    </td><td>0.20    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>416</th><td>2       </td><td>0.05    </td><td>0.40    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>482</th><td>2       </td><td>0.05    </td><td>0.50    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>548</th><td>2       </td><td>0.05    </td><td>0.70    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>614</th><td>2       </td><td>0.05    </td><td>0.90    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
+	<tr><th scope=row>680</th><td>2       </td><td>0.05    </td><td>0.99    </td><td>0.52    </td><td>0       </td><td>1       </td><td>1.083333</td><td>1       </td><td>1       </td></tr>
 </tbody>
 </table>
 
@@ -318,7 +310,7 @@ We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate S
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>pve<span class="o">==</span><span class="m">0.7</span><span class="p">,]</span>
@@ -342,17 +334,17 @@ We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate S
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>prior</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_size</th><th scope=col>cs_num</th><th scope=col>top_hit_rate</th><th scope=col>avg_purity</th></tr></thead>
 <tbody>
-	<tr><th scope=row>50</th><td>2        </td><td>0.7      </td><td>0.01     </td><td>0.63     </td><td>0.0156   </td><td>1.06     </td><td>1.28     </td><td>0.9688   </td><td>0.9979029</td></tr>
-	<tr><th scope=row>116</th><td>2        </td><td>0.7      </td><td>0.02     </td><td>0.63     </td><td>0.0156   </td><td>1.09     </td><td>1.28     </td><td>0.9688   </td><td>0.9969122</td></tr>
-	<tr><th scope=row>182</th><td>2        </td><td>0.7      </td><td>0.03     </td><td>0.63     </td><td>0.0156   </td><td>1.11     </td><td>1.28     </td><td>0.9688   </td><td>0.9969122</td></tr>
-	<tr><th scope=row>248</th><td>2        </td><td>0.7      </td><td>0.05     </td><td>0.63     </td><td>0.0156   </td><td>1.14     </td><td>1.28     </td><td>0.9688   </td><td>0.9969122</td></tr>
-	<tr><th scope=row>314</th><td>2        </td><td>0.7      </td><td>0.10     </td><td>0.63     </td><td>0.0000   </td><td>1.02     </td><td>1.26     </td><td>0.9841   </td><td>0.9994104</td></tr>
-	<tr><th scope=row>380</th><td>2        </td><td>0.7      </td><td>0.20     </td><td>0.64     </td><td>0.0000   </td><td>1.56     </td><td>1.28     </td><td>0.9688   </td><td>0.9958743</td></tr>
-	<tr><th scope=row>446</th><td>2        </td><td>0.7      </td><td>0.40     </td><td>0.64     </td><td>0.0000   </td><td>1.48     </td><td>1.28     </td><td>0.9688   </td><td>0.9959935</td></tr>
-	<tr><th scope=row>512</th><td>2        </td><td>0.7      </td><td>0.50     </td><td>0.64     </td><td>0.0000   </td><td>1.47     </td><td>1.28     </td><td>0.9688   </td><td>0.9959935</td></tr>
-	<tr><th scope=row>578</th><td>2        </td><td>0.7      </td><td>0.70     </td><td>0.64     </td><td>0.0000   </td><td>1.46     </td><td>1.28     </td><td>0.9688   </td><td>0.9959935</td></tr>
-	<tr><th scope=row>644</th><td>2        </td><td>0.7      </td><td>0.90     </td><td>0.64     </td><td>0.0000   </td><td>1.46     </td><td>1.28     </td><td>0.9688   </td><td>0.9959935</td></tr>
-	<tr><th scope=row>710</th><td>2        </td><td>0.7      </td><td>0.99     </td><td>0.64     </td><td>0.0000   </td><td>1.45     </td><td>1.28     </td><td>0.9688   </td><td>0.9959935</td></tr>
+	<tr><th scope=row>50</th><td>2   </td><td>0.7 </td><td>0.01</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>116</th><td>2   </td><td>0.7 </td><td>0.02</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>182</th><td>2   </td><td>0.7 </td><td>0.03</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>248</th><td>2   </td><td>0.7 </td><td>0.05</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>314</th><td>2   </td><td>0.7 </td><td>0.10</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>380</th><td>2   </td><td>0.7 </td><td>0.20</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>446</th><td>2   </td><td>0.7 </td><td>0.40</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>512</th><td>2   </td><td>0.7 </td><td>0.50</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>578</th><td>2   </td><td>0.7 </td><td>0.70</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>644</th><td>2   </td><td>0.7 </td><td>0.90</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
+	<tr><th scope=row>710</th><td>2   </td><td>0.7 </td><td>0.99</td><td>0.9 </td><td>0   </td><td>1   </td><td>1.8 </td><td>1   </td><td>1   </td></tr>
 </tbody>
 </table>
 
@@ -374,10 +366,10 @@ We also set PVE $ = 0.7$ so that SuSiE has power around $0.64$. We investigate S
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout_Q2 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;dscout_Q2.rds&#39;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_Q2 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;random_Q2.rds&#39;</span><span class="p">)</span>
 dscout_Q2 <span class="o">=</span> dscout_Q2<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q2<span class="o">$</span>sim_gaussian.output.file<span class="p">),]</span>
 dscout_Q2 <span class="o">=</span> dscout_Q2<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q2<span class="o">$</span>susie_prior.output.file<span class="p">),]</span>
 </pre></div>
@@ -389,7 +381,7 @@ dscout_Q2 <span class="o">=</span> dscout_Q2<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>dscout_Q2<span class="o">$</span>sim_gaussian.effect_num<span class="p">,</span> dscout_Q2<span class="o">$</span>sim_gaussian.pve<span class="p">,</span> dscout_Q2<span class="o">$</span>susie_prior.prior<span class="p">,</span>
@@ -405,7 +397,7 @@ dscout_Q2 <span class="o">=</span> dscout_Q2<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>hitsum.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve <span class="o">+</span> prior<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
@@ -430,7 +422,7 @@ purity.summary <span class="o">=</span> aggregate<span class="p">(</span>avg_pur
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>power.summary<span class="o">$</span>effect_num<span class="p">,</span> power.summary<span class="o">$</span>pve<span class="p">,</span> power.summary<span class="o">$</span>prior<span class="p">,</span>
@@ -447,7 +439,7 @@ purity.summary <span class="o">=</span> aggregate<span class="p">(</span>avg_pur
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary <span class="o">=</span> dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">2</span><span class="p">,</span> <span class="p">]</span>
@@ -460,7 +452,7 @@ purity.summary <span class="o">=</span> aggregate<span class="p">(</span>avg_pur
 </div>
 <hr>
 &copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
-<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/5228e3d73cb818837e8e2592242236590081f069/analysis/GTEx_gene_expression_analysis_4.ipynb"><code>analysis/GTEx_gene_expression_analysis_4.ipynb</code></a> committed by KaiqianZhang on Wed Sep 12 14:22:17 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/5228e3d73cb818837e8e2592242236590081f069">revision 2, 5228e3d</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/5228e3d73cb818837e8e2592242236590081f069/analysis/randomX_analysis_4.ipynb"><code>analysis/randomX_analysis_4.ipynb</code></a> committed by KaiqianZhang on Wed Sep 12 14:22:17 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/5228e3d73cb818837e8e2592242236590081f069">revision 1, 5228e3d</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
 </div>
 </div>
 </body>

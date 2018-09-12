@@ -254,7 +254,7 @@ body {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong>- Summary: SuSiE power decreases and FDR increases given more non-zero effects, despite of correlations among columns of X.</strong></p>
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2><p><strong>- Summary: Correlations in the GSEA are similar to that in the single cell data. SuSiE power decreases and FDR increases given more non-zero effects, despite of correlations among columns of X.</strong></p>
 <ul>
 <li><p>As the number of effects increases, it becomes more difficult to achieve high power even if PVE is large.</p>
 </li>
@@ -269,7 +269,7 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">2</span><span class="p">,]</span>
@@ -293,17 +293,17 @@ body {
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
 <tbody>
-	<tr><th scope=row>2</th><td>2        </td><td>0.01     </td><td>0.2152743</td><td>0.05     </td><td>0.0000   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>8</th><td>2        </td><td>0.02     </td><td>0.2152743</td><td>0.10     </td><td>0.1667   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>14</th><td>2        </td><td>0.03     </td><td>0.2152743</td><td>0.16     </td><td>0.1111   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>20</th><td>2        </td><td>0.05     </td><td>0.2152743</td><td>0.38     </td><td>0.0500   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>26</th><td>2        </td><td>0.10     </td><td>0.2152743</td><td>0.47     </td><td>0.0208   </td><td>1.043478 </td></tr>
-	<tr><th scope=row>32</th><td>2        </td><td>0.20     </td><td>0.2152743</td><td>0.53     </td><td>0.0000   </td><td>1.060000 </td></tr>
-	<tr><th scope=row>38</th><td>2        </td><td>0.40     </td><td>0.2152743</td><td>0.57     </td><td>0.0172   </td><td>1.160000 </td></tr>
-	<tr><th scope=row>44</th><td>2        </td><td>0.50     </td><td>0.2152743</td><td>0.62     </td><td>0.0159   </td><td>1.260000 </td></tr>
-	<tr><th scope=row>50</th><td>2        </td><td>0.70     </td><td>0.2152743</td><td>0.64     </td><td>0.0000   </td><td>1.280000 </td></tr>
-	<tr><th scope=row>56</th><td>2        </td><td>0.90     </td><td>0.2152743</td><td>0.73     </td><td>0.0000   </td><td>1.460000 </td></tr>
-	<tr><th scope=row>62</th><td>2        </td><td>0.99     </td><td>0.2152743</td><td>0.81     </td><td>0.0000   </td><td>1.620000 </td></tr>
+	<tr><th scope=row>2</th><td>2         </td><td>0.01      </td><td>0.01603345</td><td>0.03      </td><td>0.0000    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>8</th><td>2         </td><td>0.02      </td><td>0.01603345</td><td>0.17      </td><td>0.0000    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>14</th><td>2         </td><td>0.03      </td><td>0.01603345</td><td>0.33      </td><td>0.0000    </td><td>1.137931  </td></tr>
+	<tr><th scope=row>20</th><td>2         </td><td>0.05      </td><td>0.01603345</td><td>0.50      </td><td>0.0385    </td><td>1.181818  </td></tr>
+	<tr><th scope=row>26</th><td>2         </td><td>0.10      </td><td>0.01603345</td><td>0.62      </td><td>0.0312    </td><td>1.333333  </td></tr>
+	<tr><th scope=row>32</th><td>2         </td><td>0.20      </td><td>0.01603345</td><td>0.69      </td><td>0.0000    </td><td>1.408163  </td></tr>
+	<tr><th scope=row>38</th><td>2         </td><td>0.40      </td><td>0.01603345</td><td>0.77      </td><td>0.0000    </td><td>1.571429  </td></tr>
+	<tr><th scope=row>44</th><td>2         </td><td>0.50      </td><td>0.01603345</td><td>0.78      </td><td>0.0000    </td><td>1.591837  </td></tr>
+	<tr><th scope=row>50</th><td>2         </td><td>0.70      </td><td>0.01603345</td><td>0.80      </td><td>0.0000    </td><td>1.632653  </td></tr>
+	<tr><th scope=row>56</th><td>2         </td><td>0.90      </td><td>0.01603345</td><td>0.89      </td><td>0.0000    </td><td>1.780000  </td></tr>
+	<tr><th scope=row>62</th><td>2         </td><td>0.99      </td><td>0.01603345</td><td>0.90      </td><td>0.0000    </td><td>1.800000  </td></tr>
 </tbody>
 </table>
 
@@ -317,7 +317,7 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">3</span><span class="p">,]</span>
@@ -341,17 +341,17 @@ body {
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
 <tbody>
-	<tr><th scope=row>3</th><td>3        </td><td>0.01     </td><td>0.1576968</td><td>0.0067   </td><td>0.0000   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>9</th><td>3        </td><td>0.02     </td><td>0.1576968</td><td>0.0467   </td><td>0.0000   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>15</th><td>3        </td><td>0.03     </td><td>0.1576968</td><td>0.0733   </td><td>0.0000   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>21</th><td>3        </td><td>0.05     </td><td>0.1576968</td><td>0.1800   </td><td>0.0357   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>27</th><td>3        </td><td>0.10     </td><td>0.1576968</td><td>0.3467   </td><td>0.0189   </td><td>1.177778 </td></tr>
-	<tr><th scope=row>33</th><td>3        </td><td>0.20     </td><td>0.1576968</td><td>0.3800   </td><td>0.0172   </td><td>1.183673 </td></tr>
-	<tr><th scope=row>39</th><td>3        </td><td>0.40     </td><td>0.1576968</td><td>0.4600   </td><td>0.0000   </td><td>1.408163 </td></tr>
-	<tr><th scope=row>45</th><td>3        </td><td>0.50     </td><td>0.1576968</td><td>0.4800   </td><td>0.0000   </td><td>1.469388 </td></tr>
-	<tr><th scope=row>51</th><td>3        </td><td>0.70     </td><td>0.1576968</td><td>0.5200   </td><td>0.0000   </td><td>1.591837 </td></tr>
-	<tr><th scope=row>57</th><td>3        </td><td>0.90     </td><td>0.1576968</td><td>0.6000   </td><td>0.0110   </td><td>1.857143 </td></tr>
-	<tr><th scope=row>63</th><td>3        </td><td>0.99     </td><td>0.1576968</td><td>0.7067   </td><td>0.0093   </td><td>2.140000 </td></tr>
+	<tr><th scope=row>3</th><td>3        </td><td>0.01     </td><td>0.0265014</td><td>0.0133   </td><td>0.5000   </td><td>1.000000 </td></tr>
+	<tr><th scope=row>9</th><td>3        </td><td>0.02     </td><td>0.0265014</td><td>0.0733   </td><td>0.1538   </td><td>1.000000 </td></tr>
+	<tr><th scope=row>15</th><td>3        </td><td>0.03     </td><td>0.0265014</td><td>0.1800   </td><td>0.1290   </td><td>1.033333 </td></tr>
+	<tr><th scope=row>21</th><td>3        </td><td>0.05     </td><td>0.0265014</td><td>0.3333   </td><td>0.0741   </td><td>1.173913 </td></tr>
+	<tr><th scope=row>27</th><td>3        </td><td>0.10     </td><td>0.0265014</td><td>0.4867   </td><td>0.0267   </td><td>1.500000 </td></tr>
+	<tr><th scope=row>33</th><td>3        </td><td>0.20     </td><td>0.0265014</td><td>0.5867   </td><td>0.0330   </td><td>1.820000 </td></tr>
+	<tr><th scope=row>39</th><td>3        </td><td>0.40     </td><td>0.0265014</td><td>0.7200   </td><td>0.0182   </td><td>2.200000 </td></tr>
+	<tr><th scope=row>45</th><td>3        </td><td>0.50     </td><td>0.0265014</td><td>0.7600   </td><td>0.0000   </td><td>2.280000 </td></tr>
+	<tr><th scope=row>51</th><td>3        </td><td>0.70     </td><td>0.0265014</td><td>0.8200   </td><td>0.0000   </td><td>2.460000 </td></tr>
+	<tr><th scope=row>57</th><td>3        </td><td>0.90     </td><td>0.0265014</td><td>0.8467   </td><td>0.0155   </td><td>2.580000 </td></tr>
+	<tr><th scope=row>63</th><td>3        </td><td>0.99     </td><td>0.0265014</td><td>0.9000   </td><td>0.0146   </td><td>2.740000 </td></tr>
 </tbody>
 </table>
 
@@ -365,7 +365,7 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">5</span><span class="p">,]</span>
@@ -389,17 +389,17 @@ body {
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
 <tbody>
-	<tr><th scope=row>4</th><td>5        </td><td>0.01     </td><td>0.1683379</td><td>0.008    </td><td>0.3333   </td><td>1.00000  </td></tr>
-	<tr><th scope=row>10</th><td>5        </td><td>0.02     </td><td>0.1683379</td><td>0.028    </td><td>0.1250   </td><td>1.00000  </td></tr>
-	<tr><th scope=row>16</th><td>5        </td><td>0.03     </td><td>0.1683379</td><td>0.060    </td><td>0.1176   </td><td>1.00000  </td></tr>
-	<tr><th scope=row>22</th><td>5        </td><td>0.05     </td><td>0.1683379</td><td>0.120    </td><td>0.0323   </td><td>1.00000  </td></tr>
-	<tr><th scope=row>28</th><td>5        </td><td>0.10     </td><td>0.1683379</td><td>0.188    </td><td>0.0600   </td><td>1.06383  </td></tr>
-	<tr><th scope=row>34</th><td>5        </td><td>0.20     </td><td>0.1683379</td><td>0.220    </td><td>0.0517   </td><td>1.16000  </td></tr>
-	<tr><th scope=row>40</th><td>5        </td><td>0.40     </td><td>0.1683379</td><td>0.284    </td><td>0.0274   </td><td>1.46000  </td></tr>
-	<tr><th scope=row>46</th><td>5        </td><td>0.50     </td><td>0.1683379</td><td>0.304    </td><td>0.0130   </td><td>1.54000  </td></tr>
-	<tr><th scope=row>52</th><td>5        </td><td>0.70     </td><td>0.1683379</td><td>0.344    </td><td>0.0000   </td><td>1.72000  </td></tr>
-	<tr><th scope=row>58</th><td>5        </td><td>0.90     </td><td>0.1683379</td><td>0.420    </td><td>0.0541   </td><td>2.22000  </td></tr>
-	<tr><th scope=row>64</th><td>5        </td><td>0.99     </td><td>0.1683379</td><td>0.524    </td><td>0.0576   </td><td>2.78000  </td></tr>
+	<tr><th scope=row>4</th><td>5        </td><td>0.01     </td><td>0.0230124</td><td>0.008    </td><td>0.0000   </td><td>1.000000 </td></tr>
+	<tr><th scope=row>10</th><td>5        </td><td>0.02     </td><td>0.0230124</td><td>0.064    </td><td>0.1111   </td><td>1.000000 </td></tr>
+	<tr><th scope=row>16</th><td>5        </td><td>0.03     </td><td>0.0230124</td><td>0.084    </td><td>0.0870   </td><td>1.045455 </td></tr>
+	<tr><th scope=row>22</th><td>5        </td><td>0.05     </td><td>0.0230124</td><td>0.188    </td><td>0.0408   </td><td>1.225000 </td></tr>
+	<tr><th scope=row>28</th><td>5        </td><td>0.10     </td><td>0.0230124</td><td>0.356    </td><td>0.0632   </td><td>1.900000 </td></tr>
+	<tr><th scope=row>34</th><td>5        </td><td>0.20     </td><td>0.0230124</td><td>0.532    </td><td>0.0432   </td><td>2.780000 </td></tr>
+	<tr><th scope=row>40</th><td>5        </td><td>0.40     </td><td>0.0230124</td><td>0.596    </td><td>0.0745   </td><td>3.220000 </td></tr>
+	<tr><th scope=row>46</th><td>5        </td><td>0.50     </td><td>0.0230124</td><td>0.656    </td><td>0.0838   </td><td>3.580000 </td></tr>
+	<tr><th scope=row>52</th><td>5        </td><td>0.70     </td><td>0.0230124</td><td>0.736    </td><td>0.0366   </td><td>3.820000 </td></tr>
+	<tr><th scope=row>58</th><td>5        </td><td>0.90     </td><td>0.0230124</td><td>0.844    </td><td>0.0365   </td><td>4.380000 </td></tr>
+	<tr><th scope=row>64</th><td>5        </td><td>0.99     </td><td>0.0230124</td><td>0.888    </td><td>0.0826   </td><td>4.840000 </td></tr>
 </tbody>
 </table>
 
@@ -413,7 +413,7 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">10</span><span class="p">,]</span>
@@ -437,17 +437,17 @@ body {
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
 <tbody>
-	<tr><th scope=row>5</th><td>10       </td><td>0.01     </td><td>0.1707866</td><td>0.002    </td><td>0.6667   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>11</th><td>10       </td><td>0.02     </td><td>0.1707866</td><td>0.016    </td><td>0.3333   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>17</th><td>10       </td><td>0.03     </td><td>0.1707866</td><td>0.036    </td><td>0.1818   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>23</th><td>10       </td><td>0.05     </td><td>0.1707866</td><td>0.064    </td><td>0.0857   </td><td>1.029412 </td></tr>
-	<tr><th scope=row>29</th><td>10       </td><td>0.10     </td><td>0.1707866</td><td>0.092    </td><td>0.0980   </td><td>1.159091 </td></tr>
-	<tr><th scope=row>35</th><td>10       </td><td>0.20     </td><td>0.1707866</td><td>0.122    </td><td>0.0758   </td><td>1.404255 </td></tr>
-	<tr><th scope=row>41</th><td>10       </td><td>0.40     </td><td>0.1707866</td><td>0.158    </td><td>0.0706   </td><td>1.700000 </td></tr>
-	<tr><th scope=row>47</th><td>10       </td><td>0.50     </td><td>0.1707866</td><td>0.172    </td><td>0.0549   </td><td>1.820000 </td></tr>
-	<tr><th scope=row>53</th><td>10       </td><td>0.70     </td><td>0.1707866</td><td>0.208    </td><td>0.0189   </td><td>2.120000 </td></tr>
-	<tr><th scope=row>59</th><td>10       </td><td>0.90     </td><td>0.1707866</td><td>0.276    </td><td>0.0417   </td><td>2.880000 </td></tr>
-	<tr><th scope=row>65</th><td>10       </td><td>0.99     </td><td>0.1707866</td><td>0.392    </td><td>0.0667   </td><td>4.200000 </td></tr>
+	<tr><th scope=row>5</th><td>10        </td><td>0.01      </td><td>0.02950683</td><td>0.006     </td><td>0.2500    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>11</th><td>10        </td><td>0.02      </td><td>0.02950683</td><td>0.020     </td><td>0.0909    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>17</th><td>10        </td><td>0.03      </td><td>0.02950683</td><td>0.042     </td><td>0.1250    </td><td>1.000000  </td></tr>
+	<tr><th scope=row>23</th><td>10        </td><td>0.05      </td><td>0.02950683</td><td>0.080     </td><td>0.1111    </td><td>1.153846  </td></tr>
+	<tr><th scope=row>29</th><td>10        </td><td>0.10      </td><td>0.02950683</td><td>0.158     </td><td>0.0814    </td><td>1.755102  </td></tr>
+	<tr><th scope=row>35</th><td>10        </td><td>0.20      </td><td>0.02950683</td><td>0.254     </td><td>0.0593    </td><td>2.700000  </td></tr>
+	<tr><th scope=row>41</th><td>10        </td><td>0.40      </td><td>0.02950683</td><td>0.386     </td><td>0.0721    </td><td>4.160000  </td></tr>
+	<tr><th scope=row>47</th><td>10        </td><td>0.50      </td><td>0.02950683</td><td>0.434     </td><td>0.0921    </td><td>4.780000  </td></tr>
+	<tr><th scope=row>53</th><td>10        </td><td>0.70      </td><td>0.02950683</td><td>0.552     </td><td>0.0738    </td><td>5.960000  </td></tr>
+	<tr><th scope=row>59</th><td>10        </td><td>0.90      </td><td>0.02950683</td><td>0.686     </td><td>0.0926    </td><td>7.560000  </td></tr>
+	<tr><th scope=row>65</th><td>10        </td><td>0.99      </td><td>0.02950683</td><td>0.780     </td><td>0.1116    </td><td>8.780000  </td></tr>
 </tbody>
 </table>
 
@@ -461,7 +461,7 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout.summary<span class="p">[</span>dscout.summary<span class="o">$</span>effect_num<span class="o">==</span><span class="m">20</span><span class="p">,]</span>
@@ -485,17 +485,17 @@ body {
 <table>
 <thead><tr><th></th><th scope=col>effect_num</th><th scope=col>pve</th><th scope=col>mean_corX</th><th scope=col>power</th><th scope=col>fdr</th><th scope=col>cs_num</th></tr></thead>
 <tbody>
-	<tr><th scope=row>6</th><td>20       </td><td>0.01     </td><td>0.1843321</td><td>0.002    </td><td>0.0000   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>12</th><td>20       </td><td>0.02     </td><td>0.1843321</td><td>0.005    </td><td>0.1667   </td><td>1.000000 </td></tr>
-	<tr><th scope=row>18</th><td>20       </td><td>0.03     </td><td>0.1843321</td><td>0.011    </td><td>0.0833   </td><td>1.090909 </td></tr>
-	<tr><th scope=row>24</th><td>20       </td><td>0.05     </td><td>0.1843321</td><td>0.028    </td><td>0.0667   </td><td>1.034483 </td></tr>
-	<tr><th scope=row>30</th><td>20       </td><td>0.10     </td><td>0.1843321</td><td>0.042    </td><td>0.0870   </td><td>1.095238 </td></tr>
-	<tr><th scope=row>36</th><td>20       </td><td>0.20     </td><td>0.1843321</td><td>0.065    </td><td>0.0580   </td><td>1.408163 </td></tr>
-	<tr><th scope=row>42</th><td>20       </td><td>0.40     </td><td>0.1843321</td><td>0.089    </td><td>0.0430   </td><td>1.860000 </td></tr>
-	<tr><th scope=row>48</th><td>20       </td><td>0.50     </td><td>0.1843321</td><td>0.097    </td><td>0.0583   </td><td>2.060000 </td></tr>
-	<tr><th scope=row>54</th><td>20       </td><td>0.70     </td><td>0.1843321</td><td>0.115    </td><td>0.1221   </td><td>2.620000 </td></tr>
-	<tr><th scope=row>60</th><td>20       </td><td>0.90     </td><td>0.1843321</td><td>0.175    </td><td>0.0885   </td><td>3.840000 </td></tr>
-	<tr><th scope=row>66</th><td>20       </td><td>0.99     </td><td>0.1843321</td><td>0.299    </td><td>0.0538   </td><td>6.320000 </td></tr>
+	<tr><th scope=row>6</th><td>20        </td><td>0.01      </td><td>0.02397695</td><td>0.001     </td><td>0.0000    </td><td> 1.000000 </td></tr>
+	<tr><th scope=row>12</th><td>20        </td><td>0.02      </td><td>0.02397695</td><td>0.003     </td><td>0.0000    </td><td> 1.000000 </td></tr>
+	<tr><th scope=row>18</th><td>20        </td><td>0.03      </td><td>0.02397695</td><td>0.009     </td><td>0.1000    </td><td> 1.000000 </td></tr>
+	<tr><th scope=row>24</th><td>20        </td><td>0.05      </td><td>0.02397695</td><td>0.026     </td><td>0.0370    </td><td> 1.125000 </td></tr>
+	<tr><th scope=row>30</th><td>20        </td><td>0.10      </td><td>0.02397695</td><td>0.076     </td><td>0.0380    </td><td> 1.612245 </td></tr>
+	<tr><th scope=row>36</th><td>20        </td><td>0.20      </td><td>0.02397695</td><td>0.158     </td><td>0.0482    </td><td> 3.320000 </td></tr>
+	<tr><th scope=row>42</th><td>20        </td><td>0.40      </td><td>0.02397695</td><td>0.263     </td><td>0.0772    </td><td> 5.700000 </td></tr>
+	<tr><th scope=row>48</th><td>20        </td><td>0.50      </td><td>0.02397695</td><td>0.303     </td><td>0.0901    </td><td> 6.660000 </td></tr>
+	<tr><th scope=row>54</th><td>20        </td><td>0.70      </td><td>0.02397695</td><td>0.427     </td><td>0.1011    </td><td> 9.500000 </td></tr>
+	<tr><th scope=row>60</th><td>20        </td><td>0.90      </td><td>0.02397695</td><td>0.582     </td><td>0.1168    </td><td>13.180000 </td></tr>
+	<tr><th scope=row>66</th><td>20        </td><td>0.99      </td><td>0.02397695</td><td>0.736     </td><td>0.1481    </td><td>17.280000 </td></tr>
 </tbody>
 </table>
 
@@ -517,10 +517,10 @@ body {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>dscout_Q1 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;dscout_Q1.rds&#39;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>dscout_Q1 <span class="o">=</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&#39;gsea_Q1.rds&#39;</span><span class="p">)</span>
 dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.output.file<span class="p">),]</span>
 dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>dscout_Q1<span class="o">$</span>susie.output.file<span class="p">),]</span>
 </pre></div>
@@ -532,7 +532,7 @@ dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>dscout_df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>dscout_Q1<span class="o">$</span>sim_gaussian.effect_num<span class="p">,</span> dscout_Q1<span class="o">$</span>sim_gaussian.pve<span class="p">,</span> 
@@ -547,7 +547,7 @@ dscout_Q1 <span class="o">=</span> dscout_Q1<span class="p">[</span><span class=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>corX.summary <span class="o">=</span> aggregate<span class="p">(</span>mean_corX <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
@@ -561,7 +561,7 @@ dscout.summary <span class="o">=</span> corX.summary
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>meannonzero <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span><span class="kp">mean</span><span class="p">(</span>x<span class="p">[</span>x<span class="o">!=</span><span class="m">0</span><span class="p">])}</span>
@@ -576,7 +576,7 @@ dscout.summary<span class="o">$</span>power <span class="o">=</span> <span class
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>hitsum.summary <span class="o">=</span> aggregate<span class="p">(</span>hit <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> <span class="kp">sum</span><span class="p">)</span>
@@ -591,7 +591,7 @@ dscout.summary<span class="o">$</span>fdr <span class="o">=</span> <span class="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>cs_num.summary <span class="o">=</span> aggregate<span class="p">(</span>cs_num <span class="o">~</span> effect_num <span class="o">+</span> pve<span class="p">,</span> dscout_df<span class="p">,</span> meannonzero<span class="p">)</span>
@@ -605,7 +605,7 @@ dscout.summary<span class="o">$</span>cs_num <span class="o">=</span> cs_num.sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>is.nan.data.frame <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span>
@@ -620,7 +620,7 @@ dscout.summary<span class="p">[</span><span class="kp">is.nan</span><span class=
 </div>
 <hr>
 &copy 2018 Kaiqian Zhang and Gao Wang at Stephens Lab, University of Chicago
-<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/5228e3d73cb818837e8e2592242236590081f069/analysis/GTEx_gene_expression_analysis_2.ipynb"><code>analysis/GTEx_gene_expression_analysis_2.ipynb</code></a> committed by KaiqianZhang on Wed Sep 12 14:22:17 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/5228e3d73cb818837e8e2592242236590081f069">revision 2, 5228e3d</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
+<p><small>Exported from <a href="http://github.com/KaiqianZhang/dsc-susie/blob/5228e3d73cb818837e8e2592242236590081f069/analysis/GSEA_analysis_2.ipynb"><code>analysis/GSEA_analysis_2.ipynb</code></a> committed by KaiqianZhang on Wed Sep 12 14:22:17 2018 <a href="http://github.com/KaiqianZhang/dsc-susie/commit/5228e3d73cb818837e8e2592242236590081f069">revision 1, 5228e3d</a> <a href="https://stephenslab.github.io/ipynb-website/notes.html#Note-about-commit-ids"><span class="fa fa-question-circle"></span></a></small></p>
 </div>
 </div>
 </body>
