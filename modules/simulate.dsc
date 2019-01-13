@@ -1,11 +1,10 @@
 # simulate modules
 sim_gaussian: simulate.R + \
-                R(sim_gaussian_res=sim_gaussian(readRDS(pathX), readRDS(pathy), pve, effect_num, betaSigma))
+                R(sim_gaussian_res=sim_gaussian(readRDS(pathX), pve, effect_num, betaSigma))
   pathX: $pathX
-  pathy: $pathy
   pve: 0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.4, 0.5, 0.7, 0.9, 0.99
   effect_num: 1, 2, 3, 5, 10, 20
-  betaSigma: $betaSigma
+  betaSigma: NA
   $train_n: sim_gaussian_res$train_n
   $sim_y: sim_gaussian_res$sim_y
   $beta_idx: sim_gaussian_res$beta_idx
@@ -19,7 +18,7 @@ sim_binary: simulate.R + \
                 R(sim_binary_res=sim_binary(readRDS(pathX), effect_num, betaSigma))
   pathX: $pathX
   effect_num: 1, 2, 3, 5, 10, 20
-  betaSigma: $betaSigma
+  betaSigma: NA
   $train_n: sim_binary_res$train_n
   $sim_y: sim_binary_res$sim_y
   $beta_idx: sim_binary_res$beta_idx

@@ -1,6 +1,5 @@
 #' @title sim_gaussian simulates a normal y from given data matrix X
 #' @param X an n by p matrix
-#' @param y an n vector
 #' @param pve a scalar percentage variance explained
 #' @param effect_num a scalar number of true nonzero effects
 #' @param beta.sigma a scalar that used for simulating betas
@@ -9,14 +8,15 @@
 #' @return beta_idx a effect_num-length vector that includes indices of effects
 #' @return beta_val a effect_num-length vector that includes beta values 
 #' @return mean_corX mean of correlations of X (lower triangular entries of correlation matrix of X)
-sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
+sim_gaussian = function(X, pve, effect_num, beta.sigma){
   if (is.na(beta.sigma)){
     beta.sigma = 0.5
   }
   X = as.matrix(X)
   n = dim(X)[1]
   p = dim(X)[2]
-  train.n = round(0.8*n)
+  # train.n = round(0.8*n)
+  train.n = n
   
   beta.values = rnorm(effect_num, 0, beta.sigma)
   #possibilities for selecting beta.idx:
@@ -35,7 +35,7 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
     mean_corX = mean(abs(corX[lower.tri(corX)]))
   }
   if(effect_num==0){
-    sim.y = rnorm(n, 0, sd(y)) 
+    sim.y = rnorm(n, 0, 1) 
   }else{
     yhat = X %*% beta
     sigma = sqrt(var(yhat)*(1-pve)/pve) 
@@ -48,7 +48,6 @@ sim_gaussian = function(X, y, pve, effect_num, beta.sigma){
 
 #' @title sim_binary simulates a binary y from given data matrix X
 #' @param X an n by p matrix
-#' @param y an n vector
 #' @param effect_num a scalar number of true nonzero effects
 #' @param beta.sigma a scalar that used for simulating betas
 #' @return train_n a scalar number of trainning samples
@@ -63,7 +62,7 @@ sim_binary = function(X, effect_num, beta.sigma){
   X = as.matrix(X)
   n = dim(X)[1]
   p = dim(X)[2]
-  train.n = round(0.8*n)
+  train.n = n
   beta.values = rnorm(effect_num, 0, beta.sigma)
   beta.idx = sample(p, effect_num)
   beta = rep(0,p)
@@ -79,8 +78,8 @@ sim_binary = function(X, effect_num, beta.sigma){
   yhat = X %*% beta
   logit.prob = 1/(1+exp(-yhat))   
   sim.y = rbinom(n, 1, logit.prob)
-  sim.y[1] = 0 #hard-coded here to avoid elbo error in susie
-  sim.y[2] = 1
+  # sim.y[1] = 0 #hard-coded here to avoid elbo error in susie
+  # sim.y[2] = 1
   return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX))
 }
 

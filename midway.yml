@@ -1,9 +1,9 @@
 DSC:
   midway2:
     description: UChicago RCC cluster Midway 2
-    address: kaiqianz@midway2.rcc.uchicago.edu
+    address: yuxin@midway2.rcc.uchicago.edu
     paths:
-      home: /home/kaiqianz
+      home: /home/yuxin
     queue_type: pbs
     status_check_interval: 60
     max_running_jobs: 30
