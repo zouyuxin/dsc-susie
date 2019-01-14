@@ -10,9 +10,9 @@ DSC:
   define:
     susie_summary_all: susie_z, susie_bhat
     susie_all: susie, susie_z, susie_bhat
-    
+
   run: 
-    gaussian: sim_gaussian * susie_summary_all * score
+    binary: sim_binary * susie_summary_all * score
 
   exec_path: modules, code
   R_libs: MASS, glmnet, susieR@stephenslab/susieR

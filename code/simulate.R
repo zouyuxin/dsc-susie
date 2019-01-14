@@ -42,7 +42,14 @@ sim_gaussian = function(X, pve, effect_num, beta.sigma){
     epsilon = rnorm(n, mean = 0, sd = sigma)
     sim.y = yhat + epsilon
   }
-  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX))
+  ss <- data.frame(t(apply(X, 2, FUN=function(x){
+    fit <- lm(sim.y~x)
+    summary(fit)$coefficients[2,1:2]
+  })))
+  names(ss) <- c("effect", "se")
+  return(list(train_n=train.n, sim_y=sim.y, 
+              beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX,
+              ss = ss))
 }
 
 
@@ -80,7 +87,14 @@ sim_binary = function(X, effect_num, beta.sigma){
   sim.y = rbinom(n, 1, logit.prob)
   # sim.y[1] = 0 #hard-coded here to avoid elbo error in susie
   # sim.y[2] = 1
-  return(list(train_n=train.n, sim_y=sim.y, beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX))
+  ss <- data.frame(t(apply(X, 2, FUN=function(x){
+    fit <- glm(sim.y~x, family = 'binomial')
+    summary(fit)$coefficients[2,1:2]
+  })))
+  names(ss) <- c("effect", "se")
+  return(list(train_n=train.n, sim_y=sim.y, 
+              beta_idx=beta.idx, beta_val=beta.values, mean_corX=mean_corX,
+              ss = ss))
 }
 
 

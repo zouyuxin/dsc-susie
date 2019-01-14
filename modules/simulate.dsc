@@ -10,6 +10,7 @@ sim_gaussian: simulate.R + \
   $beta_idx: sim_gaussian_res$beta_idx
   $beta_val: sim_gaussian_res$beta_val
   $mean_corX: sim_gaussian_res$mean_corX
+  $ss: sim_gaussian_res$ss
   
 sim_gaussian_large(sim_gaussian):
   effect_num: 200
@@ -24,6 +25,7 @@ sim_binary: simulate.R + \
   $beta_idx: sim_binary_res$beta_idx
   $beta_val: sim_binary_res$beta_val
   $mean_corX: sim_binary_res$mean_corX
+  $ss: sim_binary_res$ss
   
 sim_binary_large(sim_binary):
   effect_num: 200

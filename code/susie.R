@@ -41,7 +41,7 @@ susie_z_analyze = function(pathR, train_n, ss, L, prior, s_init) {
 susie_bhat_analyze = function(pathR, train_n, ss, L, prior, s_init) {
   R=as.matrix(readRDS(pathR))
   if (!is.list(s_init)){
-    fit = susie_bhat(ss$effect, ss$se, R, n = train_n, L=L, scaled_prior_variance=prior, track_fit = TRUE)
+    fit = susie_bhat(ss$effect, ss$se, R, n = train_n, L=L, scaled_prior_variance=prior, track_fit = TRUE, estimate_prior_variance = TRUE, estimate_residual_variance = FALSE)
   } else {
     fit = susie_bhat(ss$effect, ss$se, R, n = train_n, L=L, scaled_prior_variance=prior, s_init=s_init, track_fit = TRUE)
   }
